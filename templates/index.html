@@ -1,70 +1,45 @@
 {% extends "base.html" %}
 
-{% block title %}Home – Week06{% endblock %}
+{% block title %}Circular Concept{% endblock %}
+
+{% block main_class %}flex items-center justify-center min-h-[calc(100vh-65px)]{% endblock %}
 
 {% block content %}
-<div class="max-w-2xl mx-auto space-y-6">
+<div class="max-w-lg mx-auto text-center px-6 py-16">
 
-  <h1 class="text-3xl font-bold">Hello from Flask</h1>
-
-  <!-- DaisyUI accordion (Heroicon: chevron-down used as collapse indicator) -->
-  <div class="collapse collapse-arrow bg-base-100 shadow">
-    <input type="checkbox" />
-    <div class="collapse-title font-semibold flex items-center gap-2">
-      <!-- Heroicon: sparkles -->
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-        stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-primary">
-        <path stroke-linecap="round" stroke-linejoin="round"
-          d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z" />
-      </svg>
-      Anthropic API
-    </div>
-    <div class="collapse-content text-sm text-base-content/70">
-      Anthropic key loaded: <strong>{{ anthropic_key_set }}</strong>
-    </div>
+  <!-- Icon -->
+  <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-terra-green/10 mb-8">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+      stroke-width="1.6" stroke="currentColor" class="w-8 h-8 text-terra-green">
+      <path stroke-linecap="round" stroke-linejoin="round"
+        d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+    </svg>
   </div>
 
-  <div class="collapse collapse-arrow bg-base-100 shadow">
-    <input type="checkbox" />
-    <div class="collapse-title font-semibold flex items-center gap-2">
-      <!-- Heroicon: cpu-chip -->
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-        stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-secondary">
-        <path stroke-linecap="round" stroke-linejoin="round"
-          d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 0 0 2.25-2.25V6.75a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 6.75v10.5a2.25 2.25 0 0 0 2.25 2.25Zm.75-12h9v9h-9v-9Z" />
-      </svg>
-      Gemini API
-    </div>
-    <div class="collapse-content text-sm text-base-content/70">
-      Gemini key loaded: <strong>{{ gemini_key_set }}</strong>
-    </div>
-  </div>
+  <!-- Headline -->
+  <h1 class="font-serif text-4xl font-semibold text-terra-green leading-snug mb-4">
+    Circular Business<br/>Model Generator
+  </h1>
 
-  <!-- HTMX example: click to fetch a message from the server -->
-  <div class="card bg-base-100 shadow">
-    <div class="card-body">
-      <h2 class="card-title">HTMX Demo</h2>
-      <button class="btn btn-primary w-fit"
-        hx-get="/ping"
-        hx-target="#ping-result"
-        hx-swap="innerHTML">
-        Ping server
-      </button>
-      <p id="ping-result" class="text-sm text-base-content/70 mt-2"></p>
-    </div>
-  </div>
+  <!-- Description -->
+  <p class="text-terra-muted text-lg leading-relaxed mb-3">
+    Answer five questions about your organization and we'll generate
+    structured, prototype-ready circular economy concepts tailored to your context.
+  </p>
+  <p class="text-terra-muted text-sm mb-10">
+    Five questions &middot; About five minutes
+  </p>
 
-  <!-- Alpine.js example: local counter -->
-  <div class="card bg-base-100 shadow" x-data="{ count: 0 }">
-    <div class="card-body">
-      <h2 class="card-title">Alpine.js Demo</h2>
-      <div class="flex items-center gap-4">
-        <button class="btn btn-outline btn-sm" @click="count--">−</button>
-        <span class="text-lg font-mono" x-text="count"></span>
-        <button class="btn btn-outline btn-sm" @click="count++">+</button>
-      </div>
-    </div>
-  </div>
+  <!-- Begin button -->
+  <a href="/survey"
+    class="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-white font-semibold text-base
+           bg-terra-green hover:bg-[#3d6849] transition-colors duration-200 shadow-terra">
+    Begin
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+      stroke-width="2" stroke="currentColor" class="w-4 h-4">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+    </svg>
+  </a>
 
 </div>
 {% endblock %}
