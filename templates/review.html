@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block title %}Review – Circular Concept{% endblock %}
+
+{% block main_class %}flex flex-col items-center justify-start min-h-[calc(100vh-65px)] px-4 py-12{% endblock %}
+
+{% block content %}
+
+<script>
+  const initialAnswers = {{ answers | tojson }};
+</script>
+
+<div class="w-full max-w-xl" x-data="reviewData()" x-init="init()">
+
+  <h1 class="font-serif text-3xl font-semibold text-terra-green mb-2 text-center">Review your answers</h1>
+  <p class="text-terra-muted text-sm text-center mb-10">Click the pencil to edit any answer before generating.</p>
+
+  <form method="POST" action="/generate" @submit="loading = true">
+
+    <!-- Hidden inputs synced with Alpine state -->
+    <input type="hidden" name="q1" :value="answers.q1">
+    <input type="hidden" name="q2" :value="answers.q2">
+    <input type="hidden" name="q3" :value="answers.q3">
+    <input type="hidden" name="q4" :value="answers.q4">
+    <input type="hidden" name="q5" :value="answers.q5">
+    <input type="hidden" name="n_concepts" :value="n_concepts">
+
+    <!-- Answer cards -->
+    <div class="space-y-4 mb-10">
+
+      <template x-for="(q, key) in questions" :key="key">
+        <div class="bg-white rounded-[12px] border border-terra-border shadow-terra p-6">
+
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1 min-w-0">
+              <span class="inline-block text-xs font-semibold uppercase tracking-widest text-terra-amber mb-1" x-text="q.label"></span>
+              <p class="text-sm font-semibold text-terra-green mb-3 leading-snug" x-text="q.title"></p>
+
+              <!-- Display mode -->
+              <p x-show="!editing[key]"
+                class="text-sm text-gray-700 leading-relaxed whitespace-pre-wrap"
+                x-text="answers[key] || '—'"></p>
+
+              <!-- Edit mode -->
+              <textarea x-show="editing[key]"
+                x-model="answers[key]"
+                rows="4"
+                class="w-full rounded-xl bg-terra-cream border border-terra-border px-4 py-3 text-sm
+                       text-gray-700 resize-none transition-colors duration-150"
+                @keydown.escape="editing[key] = false"></textarea>
+            </div>
+
+            <!-- Pencil / Done toggle -->
+            <button type="button"
+              @click="editing[key] = !editing[key]"
+              class="flex-shrink-0 mt-0.5 p-1.5 rounded-lg text-terra-muted hover:text-terra-green hover:bg-terra-cream-dark transition-colors duration-150">
+              <!-- Pencil icon -->
+              <svg x-show="!editing[key]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                stroke-width="1.8" stroke="currentColor" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125" />
+              </svg>
+              <!-- Check icon -->
+              <svg x-show="editing[key]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                stroke-width="2" stroke="currentColor" class="w-4 h-4 text-terra-green">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+              </svg>
+            </button>
+          </div>
+
+        </div>
+      </template>
+
+    </div>
+
+    <!-- Number of concepts -->
+    <div class="bg-white rounded-[12px] border border-terra-border shadow-terra p-6 mb-8">
+      <p class="text-sm font-semibold text-terra-green mb-1">Number of concepts to generate</p>
+      <p class="text-xs text-terra-muted mb-4">Recommended: 3–5 &nbsp;·&nbsp; Maximum: 8</p>
+      <div class="flex items-center gap-4">
+        <button type="button"
+          @click="if (n_concepts > 1) n_concepts--"
+          :disabled="n_concepts <= 1"
+          class="w-9 h-9 rounded-lg border border-terra-border flex items-center justify-center
+                 text-terra-green hover:bg-terra-cream-dark disabled:opacity-30 disabled:cursor-not-allowed
+                 transition-colors duration-150 font-semibold text-lg">−</button>
+        <span class="font-serif text-3xl font-semibold text-terra-green w-8 text-center" x-text="n_concepts"></span>
+        <button type="button"
+          @click="if (n_concepts < 8) n_concepts++"
+          :disabled="n_concepts >= 8"
+          class="w-9 h-9 rounded-lg border border-terra-border flex items-center justify-center
+                 text-terra-green hover:bg-terra-cream-dark disabled:opacity-30 disabled:cursor-not-allowed
+                 transition-colors duration-150 font-semibold text-lg">+</button>
+      </div>
+    </div>
+
+    <!-- Generate button -->
+    <div class="flex items-center justify-between">
+      <a href="/survey" class="text-sm text-terra-muted hover:text-terra-green transition-colors duration-150">
+        ← Edit answers
+      </a>
+      <button type="submit"
+        class="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-base text-white
+               bg-terra-amber hover:bg-[#5e4d27] transition-colors duration-200 shadow-terra">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke-width="1.8" stroke="currentColor" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z" />
+        </svg>
+        Generate
+      </button>
+    </div>
+
+    <!-- Loading overlay -->
+    <div x-show="loading" x-cloak
+      class="fixed inset-0 bg-terra-cream/90 flex flex-col items-center justify-center z-50">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+        stroke-width="1.6" stroke="currentColor"
+        class="w-10 h-10 text-terra-green animate-spin mb-5">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+      </svg>
+      <p class="font-serif text-xl text-terra-green mb-1">Generating concepts…</p>
+      <p class="text-sm text-terra-muted">This takes about 20–40 seconds</p>
+    </div>
+
+  </form>
+</div>
+
+{% block scripts %}
+<script>
+  function reviewData() {
+    return {
+      answers: { ...initialAnswers },
+      editing: { q1: false, q2: false, q3: false, q4: false, q5: false },
+      n_concepts: 3,
+      loading: false,
+      questions: {
+        q1: { label: 'Organization',          title: 'What does the organization make or do?' },
+        q2: { label: 'Waste & Inefficiency',  title: 'Where does waste, inefficiency, or end-of-life live in their value chain?' },
+        q3: { label: 'Pressure to Change',    title: 'What pressure is driving the need to change?' },
+        q4: { label: 'Exclusion Filter',      title: 'What circular territory have they already explored?' },
+        q5: { label: 'Success Criteria',      title: 'What does a successful outcome look like for them?' },
+      },
+      init() {}
+    }
+  }
+</script>
+{% endblock %}
+
+{% endblock %}

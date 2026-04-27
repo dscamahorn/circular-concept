@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Concepts – Circular Concept{% endblock %}
+
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+  #concepts-output h3 { font-family: 'Literata', serif; font-size: 1.2rem; font-weight: 600; color: #4a7c59; margin: 2rem 0 0.75rem; }
+  #concepts-output strong { color: #3d3830; }
+  #concepts-output p { margin-bottom: 0.75rem; line-height: 1.7; color: #4b4540; }
+  #concepts-output hr { border-color: #ddd8d0; margin: 2rem 0; }
+  #concepts-output table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; font-size: 0.85rem; }
+  #concepts-output th { background: #f0ebe2; color: #4a7c59; font-weight: 600; padding: 0.5rem 0.75rem; text-align: left; }
+  #concepts-output td { padding: 0.5rem 0.75rem; border-bottom: 1px solid #ddd8d0; vertical-align: top; }
+  #concepts-output ul { list-style: disc; padding-left: 1.25rem; margin-bottom: 0.75rem; color: #4b4540; }
+  #concepts-output li { margin-bottom: 0.25rem; line-height: 1.6; }
+  #concepts-output blockquote { border-left: 3px solid #4a7c59; padding-left: 1rem; color: #705c30; font-style: italic; margin: 1rem 0; }
+</style>
+{% endblock %}
+
+{% block main_class %}flex flex-col items-center justify-start min-h-[calc(100vh-65px)] px-4 py-12{% endblock %}
+
+{% block content %}
+<div class="w-full max-w-2xl">
+
+  <h1 class="font-serif text-3xl font-semibold text-terra-green mb-2 text-center">
+    {{ n_concepts }} Circular Concept{{ 's' if n_concepts != 1 else '' }}
+  </h1>
+  <p class="text-terra-muted text-sm text-center mb-10">Generated from your organization profile</p>
+
+  <!-- Concepts output -->
+  <div class="bg-white rounded-[12px] border border-terra-border shadow-terra p-8 mb-8">
+    <div id="concepts-output"></div>
+  </div>
+
+  <!-- Actions -->
+  <div class="flex items-center justify-between">
+    <a href="/review" class="text-sm text-terra-muted hover:text-terra-green transition-colors duration-150">
+      ← Back to review
+    </a>
+    <a href="/"
+      class="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-terra-green
+             text-terra-green font-semibold text-sm hover:bg-terra-green hover:text-white transition-colors duration-200">
+      Start over
+    </a>
+  </div>
+
+</div>
+
+{% block scripts %}
+<script>
+  const rawConcepts = {{ concepts | tojson }};
+  document.getElementById('concepts-output').innerHTML = marked.parse(rawConcepts);
+</script>
+{% endblock %}
+
+{% endblock %}
