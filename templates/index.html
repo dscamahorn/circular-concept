@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Home – Week06{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto space-y-6">
+
+  <h1 class="text-3xl font-bold">Hello from Flask</h1>
+
+  <!-- DaisyUI accordion (Heroicon: chevron-down used as collapse indicator) -->
+  <div class="collapse collapse-arrow bg-base-100 shadow">
+    <input type="checkbox" />
+    <div class="collapse-title font-semibold flex items-center gap-2">
+      <!-- Heroicon: sparkles -->
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+        stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-primary">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z" />
+      </svg>
+      Anthropic API
+    </div>
+    <div class="collapse-content text-sm text-base-content/70">
+      Anthropic key loaded: <strong>{{ anthropic_key_set }}</strong>
+    </div>
+  </div>
+
+  <div class="collapse collapse-arrow bg-base-100 shadow">
+    <input type="checkbox" />
+    <div class="collapse-title font-semibold flex items-center gap-2">
+      <!-- Heroicon: cpu-chip -->
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+        stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-secondary">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 0 0 2.25-2.25V6.75a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 6.75v10.5a2.25 2.25 0 0 0 2.25 2.25Zm.75-12h9v9h-9v-9Z" />
+      </svg>
+      Gemini API
+    </div>
+    <div class="collapse-content text-sm text-base-content/70">
+      Gemini key loaded: <strong>{{ gemini_key_set }}</strong>
+    </div>
+  </div>
+
+  <!-- HTMX example: click to fetch a message from the server -->
+  <div class="card bg-base-100 shadow">
+    <div class="card-body">
+      <h2 class="card-title">HTMX Demo</h2>
+      <button class="btn btn-primary w-fit"
+        hx-get="/ping"
+        hx-target="#ping-result"
+        hx-swap="innerHTML">
+        Ping server
+      </button>
+      <p id="ping-result" class="text-sm text-base-content/70 mt-2"></p>
+    </div>
+  </div>
+
+  <!-- Alpine.js example: local counter -->
+  <div class="card bg-base-100 shadow" x-data="{ count: 0 }">
+    <div class="card-body">
+      <h2 class="card-title">Alpine.js Demo</h2>
+      <div class="flex items-center gap-4">
+        <button class="btn btn-outline btn-sm" @click="count--">−</button>
+        <span class="text-lg font-mono" x-text="count"></span>
+        <button class="btn btn-outline btn-sm" @click="count++">+</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

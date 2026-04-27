@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 
 load_dotenv()
 
@@ -8,6 +8,20 @@ app = Flask(__name__)
 
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY")
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
+
+
+@app.route("/")
+def index():
+    return render_template(
+        "index.html",
+        anthropic_key_set=bool(ANTHROPIC_API_KEY),
+        gemini_key_set=bool(GEMINI_API_KEY),
+    )
+
+
+@app.route("/ping")
+def ping():
+    return "pong — server is alive"
 
 
 @app.route("/health")
