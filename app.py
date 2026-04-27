@@ -1,0 +1,23 @@
+import os
+from dotenv import load_dotenv
+from flask import Flask, jsonify
+
+load_dotenv()
+
+app = Flask(__name__)
+
+ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY")
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
+
+
+@app.route("/health")
+def health():
+    return jsonify({
+        "status": "ok",
+        "anthropic_key_set": bool(ANTHROPIC_API_KEY),
+        "gemini_key_set": bool(GEMINI_API_KEY),
+    })
+
+
+if __name__ == "__main__":
+    app.run(debug=os.environ.get("FLASK_DEBUG", "false").lower() == "true")
