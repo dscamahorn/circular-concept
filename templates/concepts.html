@@ -2,55 +2,198 @@
 
 {% block title %}Concepts – Circular Concept{% endblock %}
 
-{% block head %}
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<style>
-  #concepts-output h3 { font-family: 'Literata', serif; font-size: 1.2rem; font-weight: 600; color: #4a7c59; margin: 2rem 0 0.75rem; }
-  #concepts-output strong { color: #3d3830; }
-  #concepts-output p { margin-bottom: 0.75rem; line-height: 1.7; color: #4b4540; }
-  #concepts-output hr { border-color: #ddd8d0; margin: 2rem 0; }
-  #concepts-output table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; font-size: 0.85rem; }
-  #concepts-output th { background: #f0ebe2; color: #4a7c59; font-weight: 600; padding: 0.5rem 0.75rem; text-align: left; }
-  #concepts-output td { padding: 0.5rem 0.75rem; border-bottom: 1px solid #ddd8d0; vertical-align: top; }
-  #concepts-output ul { list-style: disc; padding-left: 1.25rem; margin-bottom: 0.75rem; color: #4b4540; }
-  #concepts-output li { margin-bottom: 0.25rem; line-height: 1.6; }
-  #concepts-output blockquote { border-left: 3px solid #4a7c59; padding-left: 1rem; color: #705c30; font-style: italic; margin: 1rem 0; }
-</style>
-{% endblock %}
-
-{% block main_class %}flex flex-col items-center justify-start min-h-[calc(100vh-65px)] px-4 py-12{% endblock %}
+{% block main_class %}px-6 py-10{% endblock %}
 
 {% block content %}
-<div class="w-full max-w-2xl">
 
-  <h1 class="font-serif text-3xl font-semibold text-terra-green mb-2 text-center">
-    {{ n_concepts }} Circular Concept{{ 's' if n_concepts != 1 else '' }}
-  </h1>
-  <p class="text-terra-muted text-sm text-center mb-10">Generated from your organization profile</p>
+<div class="max-w-5xl mx-auto"
+  x-data="conceptsApp()"
+  x-init="init()">
 
-  <!-- Concepts output -->
-  <div class="bg-white rounded-[12px] border border-terra-border shadow-terra p-8 mb-8">
-    <div id="concepts-output"></div>
+  <!-- Two-column layout: profile left, concepts right -->
+  <div class="grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-10 lg:gap-14">
+
+    <!-- ── Left: Profile Analysis ─────────────────────────── -->
+    <aside>
+      <p class="text-xs font-semibold uppercase tracking-widest text-terra-amber mb-3">Profile Analysis</p>
+      <p class="text-sm text-terra-muted leading-relaxed whitespace-pre-wrap">{{ profile_analysis }}</p>
+
+      <div class="mt-8 pt-6 border-t border-terra-border">
+        <a href="/survey"
+          class="text-xs text-terra-muted hover:text-terra-green transition-colors duration-150">
+          ← Start over
+        </a>
+      </div>
+    </aside>
+
+    <!-- ── Right: Concept list ────────────────────────────── -->
+    <section>
+
+      <div class="flex items-baseline justify-between mb-6">
+        <h1 class="font-serif text-2xl font-semibold text-terra-green">
+          {{ n_concepts }} Concept{{ 's' if n_concepts != 1 else '' }}
+        </h1>
+        <p class="text-xs text-terra-muted" x-show="favorites.length > 0">
+          <span x-text="favorites.length"></span> favorited
+        </p>
+      </div>
+
+      <div class="space-y-3">
+        <template x-for="concept in sortedConcepts" :key="concept.number">
+
+          <div class="rounded-[12px] border shadow-terra bg-white transition-all duration-200"
+            :class="isFav(concept.number)
+              ? 'border-terra-green'
+              : 'border-terra-border'">
+
+            <!-- ── Collapsed header ────────────────── -->
+            <div class="flex items-center gap-3 px-5 py-4 cursor-pointer select-none"
+              @click="toggle(concept.number)">
+
+              <!-- Chevron -->
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                stroke-width="2" stroke="currentColor"
+                class="w-4 h-4 flex-shrink-0 text-terra-muted transition-transform duration-200"
+                :class="isOpen(concept.number) ? 'rotate-90' : ''">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+              </svg>
+
+              <!-- Concept label -->
+              <span class="text-xs font-semibold uppercase tracking-widest text-terra-muted flex-shrink-0"
+                x-text="'Concept ' + concept.number"></span>
+
+              <!-- Mechanic badge -->
+              <span class="hidden sm:inline-block text-xs px-2 py-0.5 rounded-full bg-terra-cream
+                           border border-terra-border text-terra-amber font-medium flex-shrink-0 max-w-[160px] truncate"
+                x-text="concept.mechanic"></span>
+
+              <!-- Title -->
+              <span class="font-serif font-semibold text-terra-green flex-1 min-w-0 truncate"
+                x-text="concept.title"></span>
+
+              <!-- Heart -->
+              <button @click.stop="toggleFav(concept.number)"
+                class="flex-shrink-0 p-1.5 rounded-lg hover:bg-terra-cream-dark transition-colors duration-150"
+                :title="isFav(concept.number) ? 'Remove favourite' : 'Favourite'">
+                <!-- Filled heart -->
+                <svg x-show="isFav(concept.number)"
+                  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                  fill="#4a7c59" class="w-5 h-5">
+                  <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
+                </svg>
+                <!-- Outline heart -->
+                <svg x-show="!isFav(concept.number)"
+                  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                  stroke-width="1.8" stroke="currentColor" class="w-5 h-5 text-terra-muted">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                </svg>
+              </button>
+
+            </div>
+
+            <!-- ── Expanded body ───────────────────── -->
+            <div x-show="isOpen(concept.number)"
+              x-transition:enter="transition ease-out duration-150"
+              x-transition:enter-start="opacity-0"
+              x-transition:enter-end="opacity-100"
+              class="border-t border-terra-border px-6 py-6 space-y-6">
+
+              <!-- Description -->
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-widest text-terra-muted mb-2">Description</p>
+                <p class="text-sm text-gray-700 leading-relaxed" x-text="concept.description"></p>
+              </div>
+
+              <!-- Prototype readiness sentence (shaded box) -->
+              <div class="bg-terra-cream border-l-4 border-terra-green rounded-r-xl px-5 py-4">
+                <p class="text-xs font-semibold uppercase tracking-widest text-terra-green mb-2">Prototype Readiness</p>
+                <p class="text-sm text-gray-700 leading-relaxed italic mb-3" x-text="concept.prototype"></p>
+                <span class="inline-block text-xs font-semibold px-2 py-0.5 rounded-full"
+                  :class="concept.verdict && concept.verdict.includes('PASS')
+                    ? 'bg-green-100 text-green-700'
+                    : 'bg-amber-100 text-amber-700'"
+                  x-text="concept.verdict || 'Unrated'"></span>
+              </div>
+
+              <!-- Metadata grid -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-5 text-sm pt-1">
+
+                <div>
+                  <p class="text-xs font-semibold uppercase tracking-widest text-terra-muted mb-1">Mechanic</p>
+                  <p class="text-gray-700 leading-relaxed" x-text="concept.mechanic"></p>
+                </div>
+                <div>
+                  <p class="text-xs font-semibold uppercase tracking-widest text-terra-muted mb-1">Target User</p>
+                  <p class="text-gray-700 leading-relaxed" x-text="concept.user"></p>
+                </div>
+
+                <div>
+                  <p class="text-xs font-semibold uppercase tracking-widest text-terra-muted mb-1">Value Chain</p>
+                  <p class="text-gray-700 leading-relaxed" x-text="concept.value_chain"></p>
+                </div>
+                <div>
+                  <p class="text-xs font-semibold uppercase tracking-widest text-terra-muted mb-1">Pressure Addressed</p>
+                  <p class="text-gray-700 leading-relaxed" x-text="concept.pressure"></p>
+                </div>
+
+                <div>
+                  <p class="text-xs font-semibold uppercase tracking-widest text-terra-muted mb-1">Outcome Alignment</p>
+                  <p class="text-gray-700 leading-relaxed whitespace-pre-wrap" x-text="concept.alignment"></p>
+                </div>
+                <div>
+                  <p class="text-xs font-semibold uppercase tracking-widest text-terra-muted mb-1">Assumptions to Test</p>
+                  <p class="text-gray-700 leading-relaxed whitespace-pre-wrap" x-text="concept.assumptions"></p>
+                </div>
+
+              </div>
+            </div>
+            <!-- end expanded body -->
+
+          </div>
+        </template>
+      </div>
+      <!-- end concept list -->
+
+    </section>
   </div>
-
-  <!-- Actions -->
-  <div class="flex items-center justify-between">
-    <a href="/review" class="text-sm text-terra-muted hover:text-terra-green transition-colors duration-150">
-      ← Back to review
-    </a>
-    <a href="/"
-      class="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-terra-green
-             text-terra-green font-semibold text-sm hover:bg-terra-green hover:text-white transition-colors duration-200">
-      Start over
-    </a>
-  </div>
-
 </div>
 
 {% block scripts %}
 <script>
-  const rawConcepts = {{ concepts | tojson }};
-  document.getElementById('concepts-output').innerHTML = marked.parse(rawConcepts);
+  const rawConcepts  = {{ concepts | tojson }};
+
+  function conceptsApp() {
+    return {
+      concepts:  rawConcepts,
+      favorites: [],
+      open:      {},
+
+      init() {},
+
+      get sortedConcepts() {
+        return [...this.concepts].sort((a, b) => {
+          const af = this.isFav(a.number);
+          const bf = this.isFav(b.number);
+          if (af && !bf) return -1;
+          if (!af && bf) return  1;
+          return a.number - b.number;
+        });
+      },
+
+      isFav(n)      { return this.favorites.includes(n); },
+      toggle(n)     { this.open[n] = !this.open[n]; },
+      isOpen(n)     { return !!this.open[n]; },
+
+      toggleFav(n) {
+        if (this.isFav(n)) {
+          this.favorites = this.favorites.filter(f => f !== n);
+        } else {
+          this.favorites = [n, ...this.favorites];
+        }
+      },
+    };
+  }
 </script>
 {% endblock %}
 

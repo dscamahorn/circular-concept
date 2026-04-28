@@ -1,4 +1,5 @@
 import os
+import re
 import anthropic as anthropic_sdk
 from dotenv import load_dotenv
 from flask import Flask, jsonify, render_template, request
@@ -15,6 +16,44 @@ BASE_DIR = os.path.dirname(__file__)
 def _load_file(path):
     with open(os.path.join(BASE_DIR, path), "r", encoding="utf-8") as f:
         return f.read()
+
+
+def _parse_llm_output(text):
+    """Parse structured LLM output into profile analysis + list of concept dicts."""
+
+    def extract(block, field):
+        m = re.search(
+            rf'\*\*{re.escape(field)}:\*\*\s*(.*?)(?=\n\*\*|\Z)',
+            block, re.DOTALL
+        )
+        return m.group(1).strip() if m else ""
+
+    pm = re.search(
+        r'\*\*Profile analysis:\*\*\s*(.*?)(?=\n---|\n###|\Z)',
+        text, re.DOTALL | re.IGNORECASE
+    )
+    profile = pm.group(1).strip() if pm else ""
+
+    concepts = []
+    for section in re.split(r'\n---+\n', text):
+        hm = re.search(r'###\s*Concept\s*(\d+):\s*(.+)', section)
+        if not hm:
+            continue
+        concepts.append({
+            "number":     int(hm.group(1)),
+            "title":      hm.group(2).strip(),
+            "mechanic":   extract(section, "Circular mechanic"),
+            "user":       extract(section, "Target user"),
+            "value_chain":extract(section, "Value chain inefficiency addressed"),
+            "pressure":   extract(section, "Pressure addressed"),
+            "description":extract(section, "Concept description"),
+            "prototype":  extract(section, "Prototype-readiness sentence"),
+            "verdict":    extract(section, "Prototype-readiness verdict"),
+            "alignment":  extract(section, "Outcome alignment"),
+            "assumptions":extract(section, "Assumptions to test"),
+        })
+
+    return profile, sorted(concepts, key=lambda c: c["number"])
 
 
 @app.route("/")
@@ -86,7 +125,13 @@ def generate():
     )
 
     concepts_text = response.content[0].text
-    return render_template("concepts.html", concepts=concepts_text, n_concepts=n_concepts)
+    profile_analysis, concepts = _parse_llm_output(concepts_text)
+    return render_template(
+        "concepts.html",
+        profile_analysis=profile_analysis,
+        concepts=concepts,
+        n_concepts=n_concepts,
+    )
 
 
 @app.route("/ping")
