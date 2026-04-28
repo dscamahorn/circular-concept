@@ -16,9 +16,13 @@
     <!-- ── Left: Profile Analysis ─────────────────────────── -->
     <aside>
       <p class="text-xs font-semibold uppercase tracking-widest text-terra-amber mb-3">Profile Analysis</p>
-      {% for para in profile_paras %}
-        <p class="text-sm text-terra-muted leading-relaxed mb-2">{{ para }}</p>
-      {% endfor %}
+      {% if profile_paras %}
+        {% for para in profile_paras %}
+          <p class="text-sm text-terra-muted leading-relaxed mb-2">{{ para }}</p>
+        {% endfor %}
+      {% else %}
+        <p class="text-sm text-terra-muted italic">No profile analysis returned.</p>
+      {% endif %}
 
       <div class="mt-8 pt-6 border-t border-terra-border">
         <a href="/survey"

@@ -29,13 +29,17 @@ def _parse_llm_output(text):
         return m.group(1).strip() if m else ""
 
     pm = re.search(
-        r'\*\*Profile analysis:\*\*\s*(.*?)(?=\n---|\n###|\Z)',
+        r'\*\*Profile\s+analysis:\*\*\s*(.*?)(?=\n+---|\n+###|\Z)',
         text, re.DOTALL | re.IGNORECASE
     )
-    profile = pm.group(1).strip() if pm else ""
+    if pm:
+        profile = pm.group(1).strip()
+    else:
+        # Fallback: capture everything before the first --- or ### heading
+        profile = re.split(r'\n+---+\n+|\n+###', text, maxsplit=1)[0].strip()
 
     concepts = []
-    for section in re.split(r'\n---+\n', text):
+    for section in re.split(r'\n+---+\n+', text):
         hm = re.search(r'###\s*Concept\s*(\d+):\s*(.+)', section)
         if not hm:
             continue
