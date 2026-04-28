@@ -101,7 +101,7 @@ For each concept, you must produce:
 
 **Outcome alignment:** [Which success criteria from Question 5 does this concept address, and why? Be directional, not numerical. Do not invent projections or financial estimates. A prototype exists to find out whether the concept works -- not to assert that it will.]
 
-**Assumptions to test:** [What would need to be true for this concept to work? State these as open questions or testable hypotheses, not resolved facts. These are the things the prototype is designed to find out.]
+**Assumptions to test:** [What would need to be true for this concept to work? State these as a list of open questions or testable hypotheses, not resolved facts. These are the things the prototype is designed to find out.]
 ```
 
 ### Step 5: Apply the Prototype-Readiness Heuristic Test
@@ -181,7 +181,7 @@ Achieve full compliance with the 30% recycled content requirement across all SKU
 ### Generated Output
 
 **Profile analysis:**
-Primary inefficiency: Wasted end-of-life value (680+ tons of plastic packaging to landfill annually with no recovery). Pressure: Dual deadline - EU regulation (Jan 2027) + investor mandate (Q3 2026). Success criteria: Compliance + cost reduction + new revenue + brand differentiation. The organization has tried material substitution and lightweighting but has not yet explored systemic circular models. Strong existing customer loyalty and retail partnerships provide a foundation for behavior-change-based models.
+The primary inefficiency is the wasted end-of-life value resulting from 680+ tons of plastic packaging sent to landfills annually with no recovery. Pressure stems from a dual deadline involving EU regulations in January 2027 and an investor mandate in Q3 2026. Success criteria include achieving compliance, cost reduction, new revenue, and brand differentiation. The organization has tried material substitution and lightweighting but has not yet explored systemic circular models.
 
 ---
 
@@ -202,7 +202,12 @@ The brand co-founds a coalition of 5-8 non-competing European cosmetics brands t
 
 **Outcome alignment:** This concept directly addresses the compliance deadline (Q5) by creating a recovery pathway for post-consumer packaging that generates certified recycled content. It also addresses the new revenue goal by converting recovered material into a sellable commodity. The coalition structure is what makes both viable at once -- shared infrastructure lowers the cost of compliance while the material surplus creates the revenue opportunity. It is less direct on brand differentiation, which would depend on how visibly the coalition is marketed.
 
-**Assumptions to test:** Would enough non-competing brands join a coalition to make shared infrastructure economically viable? Are retail partners willing to host return points or reverse vending machines? Would customers pay a deposit on cosmetics packaging the way they do on beverage containers? Is there a certified reprocessor capable of handling the material mix at the volumes this coalition would generate?
+**Assumptions to test:** 
+
+* Would enough non-competing brands join a coalition to make shared infrastructure economically viable? 
+* Are retail partners willing to host return points or reverse vending machines? 
+* Would customers pay a deposit on cosmetics packaging the way they do on beverage containers? 
+* Is there a certified reprocessor capable of handling the material mix at the volumes this coalition would generate?
 
 ---
 
