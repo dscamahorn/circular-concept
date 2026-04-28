@@ -53,7 +53,15 @@ def _parse_llm_output(text):
             "assumptions":extract(section, "Assumptions to test"),
         })
 
-    return profile, sorted(concepts, key=lambda c: c["number"])
+    # Split profile into one paragraph per labelled element
+    # Handle both newline-separated and run-on sentence formats
+    raw_lines = [l.strip() for l in profile.splitlines() if l.strip()]
+    if len(raw_lines) > 1:
+        profile_paras = raw_lines
+    else:
+        profile_paras = [p.strip() for p in re.split(r'(?<=\.)\s+(?=[A-Z])', profile) if p.strip()]
+
+    return profile_paras, sorted(concepts, key=lambda c: c["number"])
 
 
 @app.route("/")
@@ -125,10 +133,10 @@ def generate():
     )
 
     concepts_text = response.content[0].text
-    profile_analysis, concepts = _parse_llm_output(concepts_text)
+    profile_paras, concepts = _parse_llm_output(concepts_text)
     return render_template(
         "concepts.html",
-        profile_analysis=profile_analysis,
+        profile_paras=profile_paras,
         concepts=concepts,
         n_concepts=n_concepts,
     )

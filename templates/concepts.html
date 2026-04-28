@@ -16,7 +16,9 @@
     <!-- ── Left: Profile Analysis ─────────────────────────── -->
     <aside>
       <p class="text-xs font-semibold uppercase tracking-widest text-terra-amber mb-3">Profile Analysis</p>
-      <p class="text-sm text-terra-muted leading-relaxed whitespace-pre-wrap">{{ profile_analysis }}</p>
+      {% for para in profile_paras %}
+        <p class="text-sm text-terra-muted leading-relaxed mb-2">{{ para }}</p>
+      {% endfor %}
 
       <div class="mt-8 pt-6 border-t border-terra-border">
         <a href="/survey"
@@ -57,15 +59,6 @@
                 :class="isOpen(concept.number) ? 'rotate-90' : ''">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
               </svg>
-
-              <!-- Concept label -->
-              <span class="text-xs font-semibold uppercase tracking-widest text-terra-muted flex-shrink-0"
-                x-text="'Concept ' + concept.number"></span>
-
-              <!-- Mechanic badge -->
-              <span class="hidden sm:inline-block text-xs px-2 py-0.5 rounded-full bg-terra-cream
-                           border border-terra-border text-terra-amber font-medium flex-shrink-0 max-w-[160px] truncate"
-                x-text="concept.mechanic"></span>
 
               <!-- Title -->
               <span class="font-serif font-semibold text-terra-green flex-1 min-w-0 truncate"
