@@ -106,11 +106,9 @@
               <div class="bg-terra-cream border-l-4 border-terra-green rounded-r-xl px-5 py-4">
                 <p class="text-xs font-semibold uppercase tracking-widest text-terra-green mb-2">Prototype Readiness</p>
                 <p class="text-sm text-gray-700 leading-relaxed italic mb-3" x-text="concept.prototype"></p>
-                <span class="inline-block text-xs font-semibold px-2 py-0.5 rounded-full"
-                  :class="concept.verdict && concept.verdict.includes('PASS')
-                    ? 'bg-green-100 text-green-700'
-                    : 'bg-amber-100 text-amber-700'"
-                  x-text="concept.verdict || 'Unrated'"></span>
+                <span x-show="concept.verdict && !concept.verdict.includes('PASS')"
+                  class="inline-block text-xs font-semibold px-2 py-0.5 rounded-full bg-amber-100 text-amber-700"
+                  x-text="concept.verdict"></span>
               </div>
 
               <!-- Metadata grid -->
