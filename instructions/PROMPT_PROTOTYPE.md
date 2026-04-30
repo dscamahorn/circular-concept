@@ -181,12 +181,13 @@ Brand differentiation through a credible sustainability story, cost reduction vi
 
 ### Generated Output
 
-**Profile analysis:**
-The primary inefficiency is the wasted end-of-life value. Production off-cuts, broken pieces, and surplus ingredients are discarded with no commercial recovery. Pressure is mounting due to a shift in consumer demand toward sustainable products, ESG reporting expectations, and rising input costs. Success criteria include brand differentiation, cost reduction through recovered value, and capture of a new consumer segment. Yum sits at circular maturity zero since no recovery model exists yet.
+**Profile analysis** The primary inefficiency is the wasted end-of-life value. Production off-cuts, broken pieces, and surplus ingredients are discarded with no commercial recovery. Pressure is mounting due to a shift in consumer demand toward sustainable products, ESG reporting expectations, and rising input costs. Success criteria include brand differentiation, cost reduction through recovered value, and capture of a new consumer segment. Yum sits at circular maturity zero since no recovery model exists yet.
+
+**Concept themes** 
 
 ---
 
-### Concept 1: Multi-Brand Deposit-Return Coalition
+### Concept 1: Production Off-Cut Supply Partnership
 
 **Circular mechanic:** Waste-as-resource (industrial symbiosis)
 **Target user:** A food or beverage manufacturer that uses grain, starch, or savory by-products as a production input; a craft brewery, a pet food manufacturer, or a food ingredient company operating near Yum's production facility

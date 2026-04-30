@@ -2,11 +2,12 @@ import os
 import re
 import anthropic as anthropic_sdk
 from dotenv import load_dotenv
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, redirect, render_template, request, session, url_for
 
 load_dotenv()
 
 app = Flask(__name__)
+app.secret_key = os.environ.get("SECRET_KEY", "dev-change-this-in-production")
 
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY")
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
@@ -39,9 +40,13 @@ def _parse_llm_output(text):
         profile = re.split(r'\n+---+\n+|\n+###', text, maxsplit=1)[0].strip()
 
     concepts = []
+    themes = ""
     for section in re.split(r'\n+---+\n+', text):
         hm = re.search(r'###\s*Concept\s*(\d+):\s*(.+)', section)
         if not hm:
+            # Sections with no concept header after the first are the closing summary
+            if concepts:
+                themes = section.strip()
             continue
         concepts.append({
             "number":     int(hm.group(1)),
@@ -57,15 +62,12 @@ def _parse_llm_output(text):
             "assumptions":extract(section, "Assumptions to test"),
         })
 
-    # Split profile into one paragraph per labelled element
-    # Handle both newline-separated and run-on sentence formats
-    raw_lines = [l.strip() for l in profile.splitlines() if l.strip()]
-    if len(raw_lines) > 1:
-        profile_paras = raw_lines
-    else:
-        profile_paras = [p.strip() for p in re.split(r'(?<=\.)\s+(?=[A-Z])', profile) if p.strip()]
+    # Strip any leading markdown heading line (## Profile analysis, **Profile analysis**, etc.)
+    profile_lines = profile.splitlines()
+    if profile_lines and re.match(r'^(#{1,3}|\*{1,2})\s*profile\s+analysis', profile_lines[0].strip(), re.IGNORECASE):
+        profile = '\n'.join(profile_lines[1:]).strip()
 
-    return profile_paras, sorted(concepts, key=lambda c: c["number"])
+    return profile, themes, sorted(concepts, key=lambda c: c["number"])
 
 
 @app.route("/")
@@ -75,7 +77,8 @@ def index():
 
 @app.route("/survey")
 def survey():
-    return render_template("survey.html")
+    existing = session.get("answers", {})
+    return render_template("survey.html", existing=existing)
 
 
 @app.route("/submit", methods=["POST"])
@@ -87,6 +90,15 @@ def submit():
         "q4": request.form.get("q4", "").strip(),
         "q5": request.form.get("q5", "").strip(),
     }
+    session["answers"] = answers
+    return render_template("review.html", answers=answers)
+
+
+@app.route("/review")
+def review():
+    answers = session.get("answers")
+    if not answers:
+        return redirect(url_for("survey"))
     return render_template("review.html", answers=answers)
 
 
@@ -99,6 +111,8 @@ def generate():
         "q4": request.form.get("q4", "").strip(),
         "q5": request.form.get("q5", "").strip(),
     }
+    session["answers"] = answers
+
     n_concepts = int(request.form.get("n_concepts", 3))
     n_concepts = max(1, min(8, n_concepts))
 
@@ -128,22 +142,32 @@ def generate():
 {rag_context}
 """
 
-    client = anthropic_sdk.Anthropic(api_key=ANTHROPIC_API_KEY)
-    response = client.messages.create(
-        model="claude-sonnet-4-6",
-        max_tokens=8192,
-        system=system_prompt,
-        messages=[{"role": "user", "content": user_message}],
-    )
+    try:
+        client = anthropic_sdk.Anthropic(api_key=ANTHROPIC_API_KEY)
+        response = client.messages.create(
+            model="claude-sonnet-4-6",
+            max_tokens=8192,
+            system=system_prompt,
+            messages=[{"role": "user", "content": user_message}],
+        )
+        concepts_text = response.content[0].text
+    except Exception as e:
+        return render_template("error.html", message=str(e)), 500
 
-    concepts_text = response.content[0].text
-    profile_paras, concepts = _parse_llm_output(concepts_text)
+    profile_analysis, themes, concepts = _parse_llm_output(concepts_text)
     return render_template(
         "concepts.html",
-        profile_paras=profile_paras,
+        profile_analysis=profile_analysis,
+        themes=themes,
         concepts=concepts,
         n_concepts=n_concepts,
     )
+
+
+@app.route("/start-over")
+def start_over():
+    session.pop("answers", None)
+    return redirect(url_for("index"))
 
 
 @app.route("/ping")
