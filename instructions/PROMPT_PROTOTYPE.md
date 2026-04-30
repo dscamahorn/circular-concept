@@ -6,7 +6,7 @@ You are a Circular Economy Concept Generator. Your purpose is to produce structu
 
 ## Input You Will Receive
 
-### 1. Organization Profile (5+1 Questions)
+### 1. Organization Profile (5 Questions)
 
 You will receive answers to these questions about the target organization:
 
@@ -160,19 +160,19 @@ Across the full set of concepts you generate:
 ### Organization Profile Input
 
 **Question 1: What does the organization make or do?**
-A mid-size European cosmetics brand producing skincare and color cosmetics, selling approximately 8 million units annually through 2,500 retail locations across Germany, France, and the Netherlands, plus a growing direct-to-consumer e-commerce channel (30% of sales).
+Yum is a snack food company that manufactures and sells packaged snack products to consumers at a mid-market scale.
 
 **Question 2: Where does waste, inefficiency, or end-of-life live in their value chain?**
-All product packaging is single-use plastic (PET bottles, PP jars, HDPE tubes) with no recovery pathway. Approximately 12 million plastic units per year are disposed of by consumers after product use, representing 850 tons of plastic waste annually. Current recycling rates are estimated at 15-20% through municipal systems, meaning 680+ tons go to landfill or incineration. No material is currently recovered back into the brand's supply chain.
+Production off-cuts, broken snacks, cosmetically rejected pieces, and surplus ingredients are discarded rather than recovered for commercial value.
 
 **Question 3: What pressure is driving the need to change?**
-EU Packaging and Packaging Waste Directive requiring 30% recycled content in all plastic packaging by January 2027, with penalties of up to €500,000 for non-compliance. Additionally, Series C investors have mandated a credible circular economy strategy as a condition for the €25M funding round closing in Q3 2026.
+Consumer demand for sustainable products, growing ESG reporting expectations, and rising input costs are all pushing Yum toward reducing waste in its supply chain.
 
 **Question 4: What circular territory have they already explored?**
-Launched lightweight packaging redesign in 2024 (reduced plastic per unit by 18%, but still single-use). Explored switching to ocean-bound plastic suppliers but found supply unreliable and costs prohibitive (45% premium). Ruled out refill stations in retail due to regulatory concerns about product contamination and quality control. Currently piloting paper-based packaging for one product line, but early testing shows moisture barrier issues. No take-back program or consumer-facing circular initiative exists.
+Yum has not yet pursued formal upcycling or closed-loop models. Waste streams are currently sent to landfill or low-value disposal with no circular recovery.
 
 **Question 5: What does a successful outcome look like for them?**
-Achieve full compliance with the 30% recycled content requirement across all SKUs by January 2027. Reduce virgin plastic procurement costs by 20% (currently €3.2M annually). Create a new revenue stream generating at least €500K annually by 2028. Build a customer-facing circular story that supports premium positioning and drives brand differentiation against mass-market competitors.
+Brand differentiation through a credible sustainability story, cost reduction via recovered ingredient value, and a new or expanded consumer segment drawn to transparent, waste-reducing snack brands.
 
 **Number of concepts to generate:** 1
 
@@ -181,33 +181,34 @@ Achieve full compliance with the 30% recycled content requirement across all SKU
 ### Generated Output
 
 **Profile analysis:**
-The primary inefficiency is the wasted end-of-life value resulting from 680+ tons of plastic packaging sent to landfills annually with no recovery. Pressure stems from a dual deadline involving EU regulations in January 2027 and an investor mandate in Q3 2026. Success criteria include achieving compliance, cost reduction, new revenue, and brand differentiation. The organization has tried material substitution and lightweighting but has not yet explored systemic circular models.
+The primary inefficiency is the wasted end-of-life value. Production off-cuts, broken pieces, and surplus ingredients are discarded with no commercial recovery. Pressure is mounting due to a shift in consumer demand toward sustainable products, ESG reporting expectations, and rising input costs. Success criteria include brand differentiation, cost reduction through recovered value, and capture of a new consumer segment. Yum sits at circular maturity zero since no recovery model exists yet.
 
 ---
 
 ### Concept 1: Multi-Brand Deposit-Return Coalition
 
-**Circular mechanic:** Deposit-return + Remanufacturing
-**Target user:** Retail cosmetics customers shopping at participating stores across Germany, France, and Netherlands
+**Circular mechanic:** Waste-as-resource (industrial symbiosis)
+**Target user:** A food or beverage manufacturer that uses grain, starch, or savory by-products as a production input; a craft brewery, a pet food manufacturer, or a food ingredient company operating near Yum's production facility
 **Value chain inefficiency addressed:** Wasted end-of-life value
-**Pressure addressed:** EU 30% recycled content requirement (January 2027)
-
+**Pressure addressed:** Rising input costs + ESG reporting expectations
+ 
 **Concept description:**
-The brand co-founds a coalition of 5-8 non-competing European cosmetics brands to establish shared deposit-return infrastructure across 1,000+ retail locations. Customers pay a €0.50 deposit on any participating brand's packaging at purchase. Returns are accepted at any participating retailer via reverse vending machines or in-store collection points, with deposit refunds issued as store credit or digital payment. Collected packaging is sorted by material type, cleaned at a centralized facility, and pelletized into certified recycled feedstock. Each brand receives recycled material proportional to their returns contribution. The brand captures packaging at 55-60% return rate (based on beverage deposit system benchmarks), meeting the 30% recycled content threshold while generating €420K annually from selling excess recovered material to non-member brands.
-
+Yum identifies a local manufacturer whose production process can absorb broken snacks, off-cut grain pieces, or surplus seasoning as a feedstock input rather than virgin material. Yum supplies that stream as a consistent, separated, and labeled by-product batch rather than sending it to disposal. The receiving partner pays a below-market ingredient price, lower than virgin inputs but above zero, converting Yum's disposal cost into a small revenue stream. Yum documents the volume diverted and the disposal cost avoided, creating a verifiable ESG metric. The receiving partner carries the sustainability story in their own supply chain reporting, and Yum can reference the partnership publicly as evidence that its production waste has a named commercial destination rather than landfill.
+ 
 **Prototype-readiness sentence:**
-"The customer pays a €0.50 deposit at purchase and returns empty packaging at any participating retailer for a refund, while the brand closes the plastic packaging loop through shared recovery infrastructure and generates certified recycled material revenue."
-
+"The receiving manufacturer takes delivery of Yum's separated production off-cuts as a feedstock input, and in return pays a below-market ingredient price, while Yum closes the snack production waste loop by converting a disposal cost into a supply revenue and a documented ESG metric."
+ 
 **Prototype-readiness verdict:** PASS
-
-**Outcome alignment:** This concept directly addresses the compliance deadline (Q5) by creating a recovery pathway for post-consumer packaging that generates certified recycled content. It also addresses the new revenue goal by converting recovered material into a sellable commodity. The coalition structure is what makes both viable at once -- shared infrastructure lowers the cost of compliance while the material surplus creates the revenue opportunity. It is less direct on brand differentiation, which would depend on how visibly the coalition is marketed.
+ 
+**Outcome alignment:** The partnership directly addresses cost reduction by converting a disposal cost line into a revenue line. It addresses ESG reporting by creating a quantifiable, auditable diversion metric, volume of by-product diverted from landfill, which is exactly the kind of concrete evidence ESG disclosure frameworks require. It contributes to brand differentiation if the partnership is made visible to consumers, though that depends on how publicly Yum chooses to tell the story. It does not on its own create a new consumer segment. That would require a consumer-facing component built on top of this foundation.
 
 **Assumptions to test:** 
 
-* Would enough non-competing brands join a coalition to make shared infrastructure economically viable? 
-* Are retail partners willing to host return points or reverse vending machines? 
-* Would customers pay a deposit on cosmetics packaging the way they do on beverage containers? 
-* Is there a certified reprocessor capable of handling the material mix at the volumes this coalition would generate?
+* Is there a manufacturer within viable logistics distance of Yum's facility that can absorb this specific by-product stream as a usable input? 
+* Would the volume and consistency of Yum's off-cut output be sufficient for a partner to rely on it?
+* Does the by-product meet food safety standards required for any intended downstream use? 
+* Is the margin between disposal cost savings and partner revenue positive enough to justify the operational change?
+* Would Yum's ESG team recognize a B2B symbiosis partnership as satisfying their reporting obligations, or would they require a consumer-visible model?
 
 ---
 
