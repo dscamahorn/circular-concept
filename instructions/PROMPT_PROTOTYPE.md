@@ -154,6 +154,7 @@ Across the full set of concepts you generate:
 3. Present each concept in the complete format specified above
 4. If you generate a concept that fails the heuristic test or validation rubric, replace it - do not show failed concepts
 5. End with a brief summary noting any patterns or themes across the concepts
+6. Do not use em-dashes (—) anywhere in the output. Use a comma, colon, or rewrite the sentence instead.
 
 ## Example of High-Quality Output
 

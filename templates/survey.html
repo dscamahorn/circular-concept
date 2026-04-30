@@ -10,6 +10,14 @@
     step: 1,
     total: 5,
     answers: { q1: '', q2: '', q3: '', q4: '', q5: '' },
+    samples: {
+      q1: 'Yum is a snack food company that manufactures and sells packaged snack products to consumers, with single-use packaging as a core part of every unit sold.',
+      q2: 'Single-use snack packaging is discarded after every purchase, with virtually no recovery or reuse loop in place at the consumer end.',
+      q3: 'Expanding plastic packaging regulations, EPR fee structures, and growing consumer preference for low-waste brands are collectively pushing Yum to act on packaging.',
+      q4: 'Yum has not yet piloted circular models; all consumer packaging currently follows a single-use, linear disposal path.',
+      q5: 'Regulatory compliance ahead of mandates, reduced per-unit packaging costs through reuse, and brand differentiation as a credible low-waste snack option.'
+    },
+    fill(q) { this.answers[q] = this.samples[q]; },
     canProceed() {
       return this.answers['q' + this.step].trim().length >= 10;
     },
@@ -61,6 +69,10 @@
           class="w-full rounded-xl bg-terra-cream border border-terra-border px-4 py-3 text-sm
                  text-gray-700 resize-none transition-colors duration-150 placeholder:text-terra-muted/60"
           placeholder="e.g. A mid-size European cosmetics brand producing skincare products, selling 8 million units annually through retail and DTC channels."></textarea>
+        <button type="button" @click="fill('q1')"
+          class="mt-2 text-xs text-terra-muted hover:text-terra-green transition-colors duration-150">
+          Fill sample response
+        </button>
       </div>
     </div>
 
@@ -79,6 +91,10 @@
           class="w-full rounded-xl bg-terra-cream border border-terra-border px-4 py-3 text-sm
                  text-gray-700 resize-none transition-colors duration-150 placeholder:text-terra-muted/60"
           placeholder="e.g. All packaging is single-use plastic with no recovery pathway — 850 tons go to landfill annually at a 15–20% recycling rate."></textarea>
+        <button type="button" @click="fill('q2')"
+          class="mt-2 text-xs text-terra-muted hover:text-terra-green transition-colors duration-150">
+          Fill sample response
+        </button>
       </div>
     </div>
 
@@ -97,6 +113,10 @@
           class="w-full rounded-xl bg-terra-cream border border-terra-border px-4 py-3 text-sm
                  text-gray-700 resize-none transition-colors duration-150 placeholder:text-terra-muted/60"
           placeholder="e.g. EU Packaging Directive requiring 30% recycled content by January 2027, plus an investor mandate tied to a Series C close in Q3 2026."></textarea>
+        <button type="button" @click="fill('q3')"
+          class="mt-2 text-xs text-terra-muted hover:text-terra-green transition-colors duration-150">
+          Fill sample response
+        </button>
       </div>
     </div>
 
@@ -115,6 +135,10 @@
           class="w-full rounded-xl bg-terra-cream border border-terra-border px-4 py-3 text-sm
                  text-gray-700 resize-none transition-colors duration-150 placeholder:text-terra-muted/60"
           placeholder="e.g. Tried lightweight packaging redesign and ocean-bound plastic. Ruled out in-store refill stations due to regulatory concerns."></textarea>
+        <button type="button" @click="fill('q4')"
+          class="mt-2 text-xs text-terra-muted hover:text-terra-green transition-colors duration-150">
+          Fill sample response
+        </button>
       </div>
     </div>
 
@@ -133,6 +157,10 @@
           class="w-full rounded-xl bg-terra-cream border border-terra-border px-4 py-3 text-sm
                  text-gray-700 resize-none transition-colors duration-150 placeholder:text-terra-muted/60"
           placeholder="e.g. Full compliance by Jan 2027, 20% reduction in virgin plastic costs, a new revenue stream of €500K+ by 2028, and a visible circular brand story."></textarea>
+        <button type="button" @click="fill('q5')"
+          class="mt-2 text-xs text-terra-muted hover:text-terra-green transition-colors duration-150">
+          Fill sample response
+        </button>
       </div>
     </div>
 
