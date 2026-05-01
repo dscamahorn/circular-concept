@@ -595,8 +595,8 @@ one primary model.
 | **Circular Inputs** | Products made from recycled, renewable, or bio-based materials that eliminate the use of virgin or toxic inputs. Includes circular supplies and sustainable product design strategies. |
 | **Sharing Platform** | A platform or system that enables users to share, rent, or access products or assets rather than own them outright, increasing utilization rates across the user base. |
 | **Product as a Service** | The producer retains ownership of the product and charges customers for the service or performance it delivers (e.g., per use, per outcome, or subscription), creating a financial incentive for durability, efficiency, and end-of-life recovery. |
-| **Product Use Extension** | Business models that keep products and components in use for longer through repair, remanufacturing, refurbishment, resale, or upgrading -- deferring or avoiding end of life. |
-| **Resource Recovery** | Systems that recover energy, materials, or nutrients from products or waste streams at end of life -- through recycling, upcycling, anaerobic digestion, composting, or industrial symbiosis. |
+| **Product Use Extension** | Business models that keep products and components in use for longer through repair, remanufacturing, refurbishment, resale, or upgrading, deferring or avoiding end of life. |
+| **Resource Recovery** | Systems that recover energy, materials, or nutrients from products or waste streams at end of life, through recycling, upcycling, anaerobic digestion, composting, or industrial symbiosis. |
 
 ---
 
@@ -609,14 +609,14 @@ within the primary model. Entries may carry multiple values.
 |---|---|
 | **Circular supplies** | Sourcing inputs that are recycled, renewable, or bio-based, replacing virgin or hazardous materials. |
 | **Sustainable product design** | Designing products to use fewer materials, last longer, be safer, or be more easily repaired, disassembled, or recycled. |
-| **Share** | Enabling multiple users to access the same physical asset sequentially or simultaneously -- peer-to-peer or platform-mediated. |
+| **Share** | Enabling multiple users to access the same physical asset sequentially or simultaneously, peer-to-peer or platform-mediated. |
 | **Pay-per-use** | Charging customers only for the units of service or output they actually consume rather than for ownership of the product. |
-| **Performance as a service** | Charging for a guaranteed outcome or level of service (e.g., lux of light, degrees of cooling) -- outcome-based pricing. |
+| **Performance as a service** | Charging for a guaranteed outcome or level of service, such as lux of light or degrees of cooling -- outcome-based pricing. |
 | **Repair and maintain** | Servicing and fixing products to restore function and extend useful life, avoiding premature replacement. |
 | **Upgrade** | Improving a product's capability or appearance to extend its relevance and life, avoiding full replacement. |
-| **Remanufacture** | Restoring a used product or component to original specification -- typically via disassembly, cleaning, inspection, replacement of worn parts, and testing. |
-| **Resell** | Selling a product for a second or subsequent time to a new owner through a secondary market -- second-hand or pre-owned. |
-| **Return** | Bringing nutrients or materials back to the biological or technical cycle after use -- composting, recycling, or soil amendment. |
+| **Remanufacture** | Restoring a used product or component to original specification, typically via disassembly, cleaning, inspection, replacement of worn parts, and testing. |
+| **Resell** | Selling a product for a second or subsequent time to a new owner through a secondary market, second-hand or pre-owned. |
+| **Return** | Bringing nutrients or materials back to the biological or technical cycle after use, through composting, recycling, or soil amendment. |
 | **Recycle / upcycle** | Processing end-of-life materials into new raw material inputs, ideally at equal or higher quality (upcycling) rather than lower quality (downcycling). |
 | **Take-back / gamified returns** | Manufacturer or retailer-operated programs that collect used products or packaging from customers, often with an incentive such as a discount, deposit, or loyalty points. |
 | **Waste-as-resource (industrial symbiosis)** | One company's waste or by-product becomes a productive input for another company, eliminating disposal and replacing virgin material. |
@@ -631,11 +631,11 @@ carry multiple values.
 
 | Value | Definition |
 |---|---|
-| **Wasted end-of-life value** | Valuable materials, components, or nutrients are lost at end of product or material life -- through landfill, incineration, or unrecovered disposal. |
+| **Wasted end-of-life value** | Valuable materials, components, or nutrients are lost at end of product or material life, through landfill, incineration, or unrecovered disposal. |
 | **Unsustainable materials** | Products or processes rely on virgin, toxic, non-renewable, or ecologically harmful inputs that deplete natural systems. |
-| **Premature product life** | Products are discarded or replaced before their functional life is exhausted -- due to design, fashion cycles, or lack of repair options. |
+| **Premature product life** | Products are discarded or replaced before their functional life is exhausted, due to design, fashion cycles, or lack of repair options. |
 | **Underutilised capacity** | Physical assets (products, equipment, space, vehicles) sit idle for a significant portion of their potential productive life. |
-| **Unexploited customer engagement** | Existing customer relationships or touchpoints are not used to create circular value -- e.g., no take-back program, no service model, no loyalty loop. |
+| **Unexploited customer engagement** | Existing customer relationships or touchpoints are not used to create circular value, such as no take-back program, no service model, or no loyalty loop. |
 
 ---
 
@@ -646,11 +646,11 @@ Entries may carry multiple values.
 
 | Value | Definition |
 |---|---|
-| **Internal mandate or leadership commitment** | A founder's mission, CEO commitment, or board-level strategic decision drove the circular initiative -- not primarily external pressure. |
+| **Internal mandate or leadership commitment** | A founder's mission, CEO commitment, or board-level strategic decision drove the circular initiative, not primarily external pressure. |
 | **Consumer demand shift** | Changing customer preferences, values, or purchasing behavior toward sustainable, ethical, or low-waste options created market pull. |
 | **Regulatory / compliance pressure** | Existing or anticipated legislation, standards, or policy requirements made the circular model necessary or commercially advantageous. |
 | **Investor or ESG pressure** | Institutional investors, ESG ratings, sustainability disclosure requirements, or capital market expectations drove the circular transition. |
-| **Competitor or market pressure** | Competitive dynamics -- rivals launching circular models, new market entrants, or shifting industry norms -- prompted the circular response. |
+| **Competitor or market pressure** | Competitive dynamics, such as rivals launching circular models, new market entrants, or shifting industry norms, prompted the circular response. |
 | **Resource cost or scarcity** | Rising costs, supply volatility, or strategic scarcity of virgin materials, energy, or water made circular inputs or efficiency economically attractive. |
 
 ---
@@ -664,11 +664,11 @@ Entries may carry multiple values.
 |---|---|
 | **Cost reduction** | The circular model reduces input costs, waste disposal costs, energy costs, or total cost of ownership for the organization or its customers. |
 | **New revenue or market access** | The circular model opens a new revenue stream, customer segment, or market that the linear model could not access. |
-| **Customer retention or deepened relationship** | The circular model creates a longer-term or more frequent relationship with customers -- through service contracts, take-back, subscription, or loyalty. |
+| **Customer retention or deepened relationship** | The circular model creates a longer-term or more frequent relationship with customers, through service contracts, take-back, subscription, or loyalty. |
 | **Brand differentiation** | The circular model creates a distinct, credible sustainability positioning that differentiates the organization from linear competitors. |
 | **Regulatory compliance** | The circular model enables the organization to meet existing or anticipated legal, policy, or reporting requirements. |
 | **Supply chain resilience** | The circular model reduces dependency on volatile, scarce, or geopolitically risky virgin material inputs by closing material loops internally or locally. |
-| **Emissions or resource reduction target** | The circular model is primarily evaluated against a quantified environmental goal -- carbon, waste, water, or material reduction -- rather than a financial metric. |
+| **Emissions or resource reduction target** | The circular model is primarily evaluated against a quantified environmental goal, such as carbon, waste, water, or material reduction, rather than a financial metric. |
 
 ---
 
