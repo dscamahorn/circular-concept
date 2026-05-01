@@ -1,6 +1,9 @@
 ---
 rag_id: consumer-packaging-reuse
 rag_version: "1.0"
+schema_version: "1.2"
+# rag_version: increment when entries are added, removed, or corrected
+# schema_version: increment when field names, structure, or controlled vocabulary change
 created: 2026-04-12
 source_file: consumer-packaging-reuse.csv
 source_domain: Ellen MacArthur Foundation Circular Economy Examples
@@ -9,10 +12,8 @@ related_files:
   - path: circular_prototype_rag_registry.md
     role: clarifier
     description: Additional context and guidance for interpreting RAG entries
-use_case: Retrieval-Augmented Generation knowledge base for generating circular economy concept prototypes. Use these entries to match organization profiles against proven reuse models, extract analogous strategies, and scaffold new circular business model concepts for similar sectors, geographies, and maturity stages.
-schema_version: "1.1"
-total_entries: 6
-confidence_filter: High
+use_case: Retrieval-Augmented Generation knowledge base for generating circular economy concept prototypes. Use these entries to match organization profiles against proven consumer packaging reuse models, extract analogous strategies, and scaffold new circular business model concepts for similar sectors, geographies, and maturity stages.
+min_confidence: High
 entry_id_prefix: CPR
 fields:
   - id
@@ -29,7 +30,8 @@ fields:
   - value_chain_stage
   - linear_model_replaced
   - org_profile
-  - founding_maturity
+  - founding_date
+  - maturity_stage
   - geography
   - revenue_model
   - pricing_mechanism
@@ -48,27 +50,6 @@ fields:
   - circular_maturity_prior
   - capability_requirements
   - prototype_readiness_statement
-retrieval_tags:
-  - deposit-return
-  - reusable-packaging
-  - shared-infrastructure
-  - take-back
-  - B2B2C
-  - B2B
-  - B2C
-  - FMCG
-  - retail
-  - food-and-beverage
-  - plastics
-  - EPR
-  - circular-inputs
-  - sharing-platform
-  - resource-recovery
-  - technical-cycle
-  - EU-regulation
-  - consumer-behavior
-  - nonprofit-governance
-  - reverse-vending-machines
 ---
 
 # Consumer Packaging Reuse -- Circular Economy RAG Knowledge Base
@@ -84,15 +65,7 @@ readiness statement suitable for direct use in concept generation prompts.
 
 ## How to Use This File
 
-- **Matching:** Retrieve entries by `circular_model_primary`, `topic_tags`,
-  `geography`, `org_profile`, or `loop_type_emf` to find analogues for a
-  target organization.
-- **Prototyping:** Feed the `prototype_readiness_statement` field directly into
-  a concept generation prompt as a "how it works" template.
-- **Gap analysis:** Use `barriers_challenges` and `capability_requirements`
-  to surface prerequisites and risk factors for similar organizations.
-- **Regulatory alignment:** Cross-reference `regulatory_policy_enabler` and
-  `economic_regulatory_pressure` to assess policy tailwinds in a target market.
+> For general retrieval and prototyping guidance, see [circular_prototype_rag_registry.md](circular_prototype_rag_registry.md), Section 12.
 
 ---
 
@@ -106,13 +79,15 @@ readiness statement suitable for direct use in concept generation prompts.
 **title:** A Nationwide, Shared System for Reusable Packaging
 **url:** https://www.ellenmacarthurfoundation.org/a-nationwide-shared-system-for-reusable-packaging
 **confidence_score:** High
+**retrieval_tags:** circular-inputs, sustainable-product-design, take-back, gamified-returns, recycle-upcycle, technical-cycle, B2B2C, large-enterprise, nonprofit-governance, France, EU, plastics, retail, FMCG, design, product-use, end-of-life, cross-stage, wasted-end-of-life-value, unsustainable-materials, EPR, regulatory-compliance, consumer-demand-shift, emissions-reduction, deposit-return, reusable-packaging, shared-infrastructure, reverse-vending-machines, standardized-container, AGEC-law
 
 #### Organization
 
 **org_name:** Citeo
 **org_one_liner:** Citeo is a French nonprofit producer responsibility organization that manages packaging waste recovery and recycling systems on behalf of brands and retailers operating in France.
 **org_profile:** Size: Large enterprise | Industry: Packaging / Retail | Type: B2B2C
-**founding_maturity:** First phase launched June 2025 | Maturity: Pilot
+**founding_date:** June 2025
+**maturity_stage:** Pilot
 **geography:** France
 
 #### Description
@@ -175,13 +150,15 @@ The user purchases a product in a standardized reusable container and returns th
 **title:** PALPA: The Collaboration That Led to Finland's Successful Deposit Return System
 **url:** https://www.ellenmacarthurfoundation.org/circular-examples/palpa-the-collaboration-that-led-to-finlands-successful-deposit-return
 **confidence_score:** High
+**retrieval_tags:** resource-recovery, recycle-upcycle, take-back, gamified-returns, return, technical-cycle, B2B2C, nonprofit, Finland, EU, plastics, beverage, retail, end-of-life, cross-stage, wasted-end-of-life-value, unsustainable-materials, regulatory-compliance, resource-cost-scarcity, cost-reduction, emissions-reduction, deposit-return, beverage-packaging, aluminium, PET, glass, DRS, packaging-tax, reverse-vending-machines
 
 #### Organization
 
 **org_name:** Suomen Palautuspakkaus Oy (PALPA); Alko Oy; Inex Partners Oy; Kesko Oyj; Hartwall Ab; Olvi Oyj; Sinebrychoff Supply Company Oy; Ekopulloyhdistys ry (Ekopullo)
 **org_one_liner:** PALPA (Suomen Palautuspakkaus Oy) is a Finnish nonprofit that operates the national deposit-return system for beverage packaging, coordinating collection, logistics, and recycling across retailers, producers, and importers throughout Finland.
 **org_profile:** Size: Not stated (nonprofit, ~15 employees) | Industry: Beverage / Packaging / Waste management | Type: B2B2C
-**founding_maturity:** Founded: 1996 | Maturity: Operating at scale
+**founding_date:** 1996
+**maturity_stage:** Operating at scale
 **geography:** Finland
 
 #### Description
@@ -244,13 +221,15 @@ The user returns an empty beverage can, PET bottle, or glass bottle to a reverse
 **title:** A Reusable Drinks Bottle Design for Multiple Brands: Universal Bottle
 **url:** https://www.ellenmacarthurfoundation.org/circular-examples/a-reusable-drinks-bottle-design-for-multiple-brands-universal-bottle
 **confidence_score:** High
+**retrieval_tags:** circular-inputs, sustainable-product-design, take-back, gamified-returns, recycle-upcycle, technical-cycle, B2C, large-enterprise, Latin-America, plastics, retail, FMCG, food-and-beverage, design, product-use, end-of-life, wasted-end-of-life-value, unsustainable-materials, regulatory-compliance, consumer-demand-shift, resource-cost-scarcity, emissions-reduction, new-revenue, deposit-return, reusable-packaging, multi-brand, PET, refillable-bottle, standardized-design
 
 #### Organization
 
 **org_name:** Coca-Cola Company; Coca-Cola Bottling Partners
 **org_one_liner:** The Coca-Cola Company is one of the world's largest beverage companies, producing and distributing soft drinks in over 200 countries through a global network of bottling partners.
 **org_profile:** Size: Large enterprise (Coca-Cola -- one of the world's largest FMCG companies) | Industry: Food and beverage / FMCG | Type: B2C
-**founding_maturity:** Introduced: 2018 | Maturity: Growth
+**founding_date:** 2018
+**maturity_stage:** Growth
 **geography:** Latin America (primary); scaling to other continents
 
 #### Description
@@ -313,13 +292,15 @@ The user purchases a soda in a Universal Bottle and returns the empty bottle to 
 **title:** An Industry-Wide Shared Packaging System: Swedish Return System
 **url:** https://www.ellenmacarthurfoundation.org/circular-examples/an-industry-wide-shared-packaging-system-swedish-return-system
 **confidence_score:** High
+**retrieval_tags:** sharing-platform, share, circular-supplies, technical-cycle, B2B, large-enterprise, trade-association, Sweden, EU, food-and-agriculture, retail, logistics, product-use, wasted-end-of-life-value, unsustainable-materials, regulatory-compliance, resource-cost-scarcity, internal-mandate, cost-reduction, emissions-reduction, supply-chain-resilience, shared-infrastructure, reusable-crates, food-supply-chain, pooling, fresh-produce, crate-tracking
 
 #### Organization
 
 **org_name:** Swedish Return System (SRS); Trade Association for Grocery of Sweden; Swedish Food and Drinks Retailers Association
 **org_one_liner:** The Swedish Return System (SRS) is a B2B shared pool of reusable plastic crates and pallets established in 1997 and jointly owned by two Swedish grocery trade associations, used to deliver fresh produce across 1,500+ participating businesses.
 **org_profile:** Size: Large enterprise (trade association-owned, 1,500+ members) | Industry: Food and agriculture / Logistics / Packaging | Type: B2B
-**founding_maturity:** Founded: 1997 | Maturity: Operating at scale
+**founding_date:** 1997
+**maturity_stage:** Operating at scale
 **geography:** Sweden
 
 #### Description
@@ -382,13 +363,15 @@ The user (food business) loads fresh produce into SRS reusable crates for delive
 **title:** Beyond the Bag: A Collective Effort to Drive Customers Away from Single-Use Bags
 **url:** https://www.ellenmacarthurfoundation.org/circular-examples/beyond-the-bag-a-collective-effort-to-drive-customers-away-from-single-use
 **confidence_score:** High
+**retrieval_tags:** circular-inputs, sustainable-product-design, share, technical-cycle, B2C, large-enterprise, United-States, plastics, retail, product-use, end-of-life, wasted-end-of-life-value, unexploited-customer-engagement, regulatory-compliance, consumer-demand-shift, competitor-market-pressure, emissions-reduction, brand-differentiation, cost-reduction, single-use-bags, BYOB, consumer-behavior, collective-action, bag-fee, open-source-campaign
 
 #### Organization
 
 **org_name:** Consortium to Reinvent the Retail Bag (Closed Loop Partners' Center for the Circular Economy); CVS Health; Target; Walmart; Kroger; Dollar Tree; Meijer
 **org_one_liner:** Closed Loop Partners is a US-based investment firm and innovation center that funds and develops circular economy solutions across consumer goods, retail, and waste sectors.
 **org_profile:** Size: Large enterprise | Industry: Retail | Type: B2C
-**founding_maturity:** Founded: 2020 | Maturity: Growth
+**founding_date:** 2020
+**maturity_stage:** Growth
 **geography:** United States (Denver, Colorado; Tucson, Arizona; Southern California -- expanded 2025)
 
 #### Description
@@ -451,13 +434,15 @@ The user brings their own bag or declines a single-use bag at checkout prompted 
 **title:** Pay for the Product, Not the Packaging: Algramo
 **url:** https://www.ellenmacarthurfoundation.org/circular-examples/pay-for-the-product-not-the-packaging-algramo
 **confidence_score:** High
+**retrieval_tags:** sharing-platform, pay-per-use, take-back, gamified-returns, technical-cycle, B2B2C, SME, Chile, United-States, Indonesia, plastics, retail, FMCG, product-use, end-of-life, unsustainable-materials, wasted-end-of-life-value, unexploited-customer-engagement, regulatory-compliance, consumer-demand-shift, internal-mandate, new-revenue, emissions-reduction, brand-differentiation, refill, smart-dispensing, RFID, household-products, low-income, micro-quantities, plastic-free, mobile-app
 
 #### Organization
 
 **org_name:** Algramo
 **org_one_liner:** Algramo is a Chilean company that operates a smart refill system enabling consumers to refill RFID-chipped reusable containers with household cleaning and personal care products at app-connected dispensing machines, eliminating single-use packaging.
 **org_profile:** Size: SME | Industry: Retail technology / FMCG / Packaging | Type: B2B2C
-**founding_maturity:** Maturity: Growth
+**founding_date:** Not stated
+**maturity_stage:** Growth
 **geography:** Chile (Santiago); United States (New York); Indonesia (Jakarta)
 
 #### Description
@@ -514,212 +499,25 @@ The user brings their RFID-chipped Algramo container to a smart dispensing machi
 
 ---
 
-## Cross-Entry Index
-
-### By Circular Business Model Primary
-
-| Model | Entry IDs |
-|---|---|
-| Circular Inputs | CPR-001, CPR-003, CPR-005 |
-| Resource Recovery | CPR-002 |
-| Sharing Platform | CPR-004, CPR-006 |
-
-### By Loop Type (EMF)
-
-| Loop | Entry IDs |
-|---|---|
-| Technical cycle | CPR-001, CPR-002, CPR-003, CPR-004, CPR-005, CPR-006 |
-
-### By Organization Type
-
-| Org Type | Entry IDs |
-|---|---|
-| B2B2C | CPR-001, CPR-002, CPR-006 |
-| B2C | CPR-003, CPR-005 |
-| B2B | CPR-004 |
-
-### By Maturity Stage
-
-| Maturity | Entry IDs |
-|---|---|
-| Pilot | CPR-001 |
-| Growth | CPR-003, CPR-005, CPR-006 |
-| Operating at scale | CPR-002, CPR-004 |
-
-### By Geography
-
-| Geography | Entry IDs |
-|---|---|
-| France | CPR-001 |
-| Finland | CPR-002 |
-| Latin America (+ scaling) | CPR-003 |
-| Sweden | CPR-004 |
-| United States | CPR-005 |
-| Chile / USA / Indonesia | CPR-006 |
-
-### By Technology Enabler Type
-
-| Technology | Entry IDs |
-|---|---|
-| Reverse vending machines (RVMs) | CPR-001, CPR-002 |
-| Standardized bottle / container design | CPR-001, CPR-003 |
-| RFID-chipped containers + smart dispensers | CPR-006 |
-| Crate tracking and inventory management | CPR-004 |
-| Open-source campaign assets | CPR-005 |
-
-### By Primary Inefficiency Addressed
-
-| Inefficiency | Entry IDs |
-|---|---|
-| Wasted end-of-life value | CPR-001, CPR-002, CPR-003, CPR-004, CPR-005, CPR-006 |
-| Unsustainable materials | CPR-001, CPR-002, CPR-003, CPR-004, CPR-006 |
-| Unexploited customer engagement | CPR-005, CPR-006 |
-
----
-
 ## Field Taxonomy and Controlled Vocabularies
 
-This section defines the controlled vocabulary for the key classification fields
-used across all entries. Use these definitions to interpret field values during
-retrieval and to correctly classify new entries added to this knowledge base.
-
----
-
-### G -- Circular Business Model (Primary)
-
-The top-level strategic pattern the case exemplifies. Each entry carries exactly
-one primary model.
-
-| Value | Definition |
-|---|---|
-| **Circular Inputs** | Products made from recycled, renewable, or bio-based materials that eliminate the use of virgin or toxic inputs. Includes circular supplies and sustainable product design strategies. |
-| **Sharing Platform** | A platform or system that enables users to share, rent, or access products or assets rather than own them outright, increasing utilization rates across the user base. |
-| **Product as a Service** | The producer retains ownership of the product and charges customers for the service or performance it delivers (e.g., per use, per outcome, or subscription), creating a financial incentive for durability, efficiency, and end-of-life recovery. |
-| **Product Use Extension** | Business models that keep products and components in use for longer through repair, remanufacturing, refurbishment, resale, or upgrading, deferring or avoiding end of life. |
-| **Resource Recovery** | Systems that recover energy, materials, or nutrients from products or waste streams at end of life, through recycling, upcycling, anaerobic digestion, composting, or industrial symbiosis. |
-
----
-
-### H -- Circular Sub-Models
-
-One or more sub-models that describe the specific circular mechanisms deployed
-within the primary model. Entries may carry multiple values.
-
-| Value | Definition |
-|---|---|
-| **Circular supplies** | Sourcing inputs that are recycled, renewable, or bio-based, replacing virgin or hazardous materials. |
-| **Sustainable product design** | Designing products to use fewer materials, last longer, be safer, or be more easily repaired, disassembled, or recycled. |
-| **Share** | Enabling multiple users to access the same physical asset sequentially or simultaneously, peer-to-peer or platform-mediated. |
-| **Pay-per-use** | Charging customers only for the units of service or output they actually consume rather than for ownership of the product. |
-| **Performance as a service** | Charging for a guaranteed outcome or level of service, such as lux of light or degrees of cooling -- outcome-based pricing. |
-| **Repair and maintain** | Servicing and fixing products to restore function and extend useful life, avoiding premature replacement. |
-| **Upgrade** | Improving a product's capability or appearance to extend its relevance and life, avoiding full replacement. |
-| **Remanufacture** | Restoring a used product or component to original specification, typically via disassembly, cleaning, inspection, replacement of worn parts, and testing. |
-| **Resell** | Selling a product for a second or subsequent time to a new owner through a secondary market, second-hand or pre-owned. |
-| **Return** | Bringing nutrients or materials back to the biological or technical cycle after use, through composting, recycling, or soil amendment. |
-| **Recycle / upcycle** | Processing end-of-life materials into new raw material inputs, ideally at equal or higher quality (upcycling) rather than lower quality (downcycling). |
-| **Take-back / gamified returns** | Manufacturer or retailer-operated programs that collect used products or packaging from customers, often with an incentive such as a discount, deposit, or loyalty points. |
-| **Waste-as-resource (industrial symbiosis)** | One company's waste or by-product becomes a productive input for another company, eliminating disposal and replacing virgin material. |
-| **Product as a service** | The producer retains ownership; the customer pays for access or use. (Sub-model variant -- see also G definition.) |
-
----
-
-### AC -- Inefficiency Type
-
-The underlying linear economy failure the circular model addresses. Entries may
-carry multiple values.
-
-| Value | Definition |
-|---|---|
-| **Wasted end-of-life value** | Valuable materials, components, or nutrients are lost at end of product or material life, through landfill, incineration, or unrecovered disposal. |
-| **Unsustainable materials** | Products or processes rely on virgin, toxic, non-renewable, or ecologically harmful inputs that deplete natural systems. |
-| **Premature product life** | Products are discarded or replaced before their functional life is exhausted, due to design, fashion cycles, or lack of repair options. |
-| **Underutilised capacity** | Physical assets (products, equipment, space, vehicles) sit idle for a significant portion of their potential productive life. |
-| **Unexploited customer engagement** | Existing customer relationships or touchpoints are not used to create circular value, such as no take-back program, no service model, or no loyalty loop. |
-
----
-
-### AD -- Economic / Regulatory Pressure
-
-The primary external or internal driver that motivated the circular initiative.
-Entries may carry multiple values.
-
-| Value | Definition |
-|---|---|
-| **Internal mandate or leadership commitment** | A founder's mission, CEO commitment, or board-level strategic decision drove the circular initiative, not primarily external pressure. |
-| **Consumer demand shift** | Changing customer preferences, values, or purchasing behavior toward sustainable, ethical, or low-waste options created market pull. |
-| **Regulatory / compliance pressure** | Existing or anticipated legislation, standards, or policy requirements made the circular model necessary or commercially advantageous. |
-| **Investor or ESG pressure** | Institutional investors, ESG ratings, sustainability disclosure requirements, or capital market expectations drove the circular transition. |
-| **Competitor or market pressure** | Competitive dynamics, such as rivals launching circular models, new market entrants, or shifting industry norms, prompted the circular response. |
-| **Resource cost or scarcity** | Rising costs, supply volatility, or strategic scarcity of virgin materials, energy, or water made circular inputs or efficiency economically attractive. |
-
----
-
-### AE -- Success Criteria
-
-The primary metric or outcome against which the circular initiative is evaluated.
-Entries may carry multiple values.
-
-| Value | Definition |
-|---|---|
-| **Cost reduction** | The circular model reduces input costs, waste disposal costs, energy costs, or total cost of ownership for the organization or its customers. |
-| **New revenue or market access** | The circular model opens a new revenue stream, customer segment, or market that the linear model could not access. |
-| **Customer retention or deepened relationship** | The circular model creates a longer-term or more frequent relationship with customers, through service contracts, take-back, subscription, or loyalty. |
-| **Brand differentiation** | The circular model creates a distinct, credible sustainability positioning that differentiates the organization from linear competitors. |
-| **Regulatory compliance** | The circular model enables the organization to meet existing or anticipated legal, policy, or reporting requirements. |
-| **Supply chain resilience** | The circular model reduces dependency on volatile, scarce, or geopolitically risky virgin material inputs by closing material loops internally or locally. |
-| **Emissions or resource reduction target** | The circular model is primarily evaluated against a quantified environmental goal, such as carbon, waste, water, or material reduction, rather than a financial metric. |
-
----
-
-### AH -- Prototype Readiness Statement (Classification)
-
-Indicates how fully the case supports a user-facing circular prototype. Used to
-assess which entries can be directly adapted for concept generation.
-
-| Value | Definition |
-|---|---|
-| **Prototype-ready (complete sentence)** | A complete sentence following the pattern: "The user [does X], and in return receives [Y], while the producer closes the [loop name] loop by [doing Z]." All three elements are present and specific enough to prototype a user interaction. All entries in this file meet this standard. |
-| **Mechanic present but not prototype-ready** | The circular mechanic is identifiable (e.g., take-back exists, service model exists) but the case lacks sufficient detail on the user interaction, incentive structure, or return exchange to draft a complete prototype sentence. |
-| **Design principle only** | The case describes a design philosophy, material choice, or policy framework rather than a discrete product-user interaction. No testable circular exchange between a user and a producer is described. Applies to most policy/governance cases, research projects, and supply-chain-only interventions. |
+> Controlled vocabulary for all classification fields (G, H, AC, AD, AE, AH) is maintained in [circular_prototype_rag_registry.md](circular_prototype_rag_registry.md), Section 11. Do not edit definitions here.
 
 ---
 
 ## RAG Usage Notes
 
-### Prompt Matching Guidance
+> General retrieval priorities and prototype generation template: see [circular_prototype_rag_registry.md](circular_prototype_rag_registry.md), Section 12.
 
-When retrieving entries for prototype generation, prioritize matching on:
+### Sector-Specific Matching Notes
 
-1. `circular_model_primary` -- the broadest strategic pattern (Circular Inputs vs. Sharing Platform vs. Resource Recovery)
-2. `org_profile` -- org size and type (SME vs. large enterprise; B2B vs. B2C vs. B2B2C)
-3. `value_chain_stage` -- where in the chain the target organization operates
-4. `inefficiency_type` -- what waste or underperformance the prototype must address
-5. `geography` -- for regulatory and cultural context alignment
-
-### Prototype Generation Template
-
-Use the following structure when generating a concept prototype from a retrieved entry:
-
-```
-ANALOGOUS CASE: [id] -- [title]
-ORGANIZATION MATCH: [why the org profile is analogous]
-CIRCULAR LOOP PATTERN: [circular_model_primary] via [circular_sub_models]
-HOW IT WORKS: [prototype_readiness_statement adapted to target org]
-KEY CAPABILITIES REQUIRED: [capability_requirements]
-KNOWN BARRIERS: [barriers_challenges]
-REGULATORY TAILWIND: [regulatory_policy_enabler adapted to target market]
-SUCCESS METRIC ANALOGY: [quantified_impact adapted to target scale]
-```
-
-### Confidence and Data Quality
-
-All entries in this file carry a `confidence_score` of **High**, sourced
-directly from the Ellen MacArthur Foundation circular examples database.
-Field values marked "Not stated" in the source have been omitted rather than
-interpolated. Do not treat omitted fields as negative evidence -- they reflect
-source limitations, not model failure.
+- **CPR-001 (Citeo):** Best analogue for brands or industry bodies designing multi-party shared packaging infrastructure; most relevant where EPR legislation requires collective reuse investment and no single brand can build the system alone.
+- **CPR-002 (PALPA):** Best analogue for national or regional deposit-return system design; most relevant for beverage producers facing packaging tax liability or DRS mandate, and for cooperative governance models across competing industry players.
+- **CPR-003 (Coca-Cola Universal Bottle):** Best analogue for a single large FMCG brand launching a proprietary reusable packaging format at scale; most relevant where the brand controls its own bottling or distribution and can drive the return loop directly.
+- **CPR-004 (Swedish Return System):** Best analogue for B2B supply chain packaging shared across a trade sector; most relevant for food, agriculture, or logistics organizations exploring pooled asset models governed by a trade association or cooperative.
+- **CPR-005 (Beyond the Bag):** Best analogue for retailer consortia or collective consumer behavior-change campaigns; most relevant in markets with bag fee or ban legislation, where shared signage and cashier prompts are sufficient infrastructure.
+- **CPR-006 (Algramo):** Best analogue for refill or dispensing models eliminating single-use packaging at point of sale; most relevant for FMCG brands targeting urban, sustainability-conscious, or low-income consumer segments via smart infrastructure rather than store redesign.
 
 ---
 
-*End of file -- consumer-packaging-reuse-RAG.md | schema v1.1*
+*End of file -- consumer-packaging-reuse-RAG.md | schema v1.2*

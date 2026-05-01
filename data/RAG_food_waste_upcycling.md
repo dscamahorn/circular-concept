@@ -1,6 +1,9 @@
 ---
 rag_id: food-waste-upcycling
 rag_version: "1.0"
+schema_version: "1.2"
+# rag_version: increment when entries are added, removed, or corrected
+# schema_version: increment when field names, structure, or controlled vocabulary change
 created: 2026-04-21
 source_file: food-waste-upcycling.csv
 source_domain: Ellen MacArthur Foundation Circular Economy Examples
@@ -10,9 +13,7 @@ related_files:
     role: clarifier
     description: Additional context and guidance for interpreting RAG entries
 use_case: Retrieval-Augmented Generation knowledge base for generating circular economy concept prototypes. Use these entries to match organization profiles against proven food waste upcycling models, extract analogous strategies, and scaffold new circular business model concepts for similar sectors, geographies, and maturity stages.
-schema_version: "1.1"
-total_entries: 5
-confidence_filter: High
+min_confidence: High
 entry_id_prefix: FWU
 fields:
   - id
@@ -29,7 +30,8 @@ fields:
   - value_chain_stage
   - linear_model_replaced
   - org_profile
-  - founding_maturity
+  - founding_date
+  - maturity_stage
   - geography
   - revenue_model
   - pricing_mechanism
@@ -48,37 +50,6 @@ fields:
   - circular_maturity_prior
   - capability_requirements
   - prototype_readiness_statement
-retrieval_tags:
-  - food-waste
-  - upcycling
-  - surplus-food
-  - by-product-valorisation
-  - waste-as-resource
-  - agricultural-waste
-  - urban-organics
-  - fermentation
-  - alternative-protein
-  - subscription-model
-  - B2B
-  - B2C
-  - B2B2C
-  - food-and-beverage
-  - plastics
-  - EPR
-  - circular-inputs
-  - sharing-platform
-  - resource-recovery
-  - circular-inputs
-  - biological-cycle
-  - industrial-symbiosis
-  - SME
-  - startup
-  - Netherlands
-  - UK
-  - USA
-  - regenerative-agriculture
-  - open-source
-  - transparency
 ---
 
 # Food Waste Upcycling -- Circular Economy RAG Knowledge Base
@@ -94,15 +65,7 @@ readiness statement suitable for direct use in concept generation prompts.
 
 ## How to Use This File
 
-- **Matching:** Retrieve entries by `circular_model_primary`, `topic_tags`,
-  `geography`, `org_profile`, or `loop_type_emf` to find analogues for a
-  target organization.
-- **Prototyping:** Feed the `prototype_readiness_statement` field directly into
-  a concept generation prompt as a "how it works" template.
-- **Gap analysis:** Use `barriers_challenges` and `capability_requirements`
-  to surface prerequisites and risk factors for similar organizations.
-- **Regulatory alignment:** Cross-reference `regulatory_policy_enabler` and
-  `economic_regulatory_pressure` to assess policy tailwinds in a target market.
+> For general retrieval and prototyping guidance, see [circular_prototype_rag_registry.md](circular_prototype_rag_registry.md), Section 12.
 
 ---
 
@@ -116,13 +79,15 @@ readiness statement suitable for direct use in concept generation prompts.
 **title:** Brewing Beer from Surplus Bread
 **url:** https://www.ellenmacarthurfoundation.org/circular-examples/brewing-beer-from-surplus-bread
 **confidence_score:** High
+**retrieval_tags:** resource-recovery, waste-as-resource, industrial-symbiosis, recycle-upcycle, circular-supplies, biological-cycle, B2C, SME, United-Kingdom, food-and-agriculture, food-and-beverage, production, end-of-life, cross-stage, wasted-end-of-life-value, unsustainable-materials, consumer-demand-shift, internal-mandate, regulatory-compliance, emissions-reduction, brand-differentiation, new-revenue, surplus-bread, beer-brewing, upcycling, food-waste, by-product-valorisation, craft-beer, open-source, surplus-food
 
 #### Organization
 
 **org_name:** Toast Ale
 **org_one_liner:** Toast Ale is a UK craft beer company that replaces approximately one-third of the malted grain in its brewing process with surplus bread collected from bakeries and food businesses, donating all profits to food waste charities.
 **org_profile:** Size: SME | Industry: Food & Beverage / Craft Beer | Type: B2C
-**founding_maturity:** Founded 2016 | Maturity: Growth
+**founding_date:** 2016
+**maturity_stage:** Growth
 **geography:** United Kingdom (primary); international licensing partnerships
 
 #### Description
@@ -190,13 +155,15 @@ production input.
 **title:** Radical Transparency in Collaborations to Eradicate Food Waste
 **url:** https://www.ellenmacarthurfoundation.org/circular-examples/radical-transparency-in-collaborations-to-eradicate-food-waste-rescued
 **confidence_score:** High
+**retrieval_tags:** resource-recovery, waste-as-resource, industrial-symbiosis, take-back, recycle-upcycle, biological-cycle, B2C, SME, startup, United-Kingdom, food-and-agriculture, distribution, product-use, end-of-life, cross-stage, wasted-end-of-life-value, unexploited-customer-engagement, consumer-demand-shift, regulatory-compliance, internal-mandate, new-revenue, brand-differentiation, emissions-reduction, surplus-food, cosmetically-rejected, subscription-box, farm-surplus, transparency, agricultural-waste, DTC
 
 #### Organization
 
 **org_name:** Rescued
 **org_one_liner:** Rescued is a UK food company that sources surplus and cosmetically rejected food from farmers and sells it to consumers via a subscription box model, applying radical transparency to disclose the exact origin and reason for surplus of every product.
 **org_profile:** Size: SME / Startup | Industry: Food & Agriculture / Direct-to-Consumer | Type: B2C
-**founding_maturity:** Early growth | Maturity: Growth
+**founding_date:** Not stated
+**maturity_stage:** Growth
 **geography:** United Kingdom
 
 #### Description
@@ -266,13 +233,15 @@ with no commercial value recovered and farmers absorbing the loss.
 **title:** Alternative Meat Made from Food By-Products
 **url:** https://www.ellenmacarthurfoundation.org/circular-examples/planetarians
 **confidence_score:** High
+**retrieval_tags:** resource-recovery, waste-as-resource, industrial-symbiosis, circular-supplies, recycle-upcycle, biological-cycle, B2B, startup, United-States, food-and-agriculture, food-technology, production, end-of-life, cross-stage, wasted-end-of-life-value, unsustainable-materials, resource-cost-scarcity, consumer-demand-shift, regulatory-compliance, cost-reduction, new-revenue, emissions-reduction, supply-chain-resilience, alternative-protein, fermentation, food-by-products, spent-grain, brewery, vegetable-oil, upcycling, food-waste
 
 #### Organization
 
 **org_name:** Planetarians
 **org_one_liner:** Planetarians uses Solid State Fermentation with fungi to convert waste carbohydrates from the vegetable oil, brewing, and distilling industries into high-protein alternative meat ingredients, turning industrial food by-products into a commercial protein source without the need for animals.
 **org_profile:** Size: Startup | Industry: Food Technology / Alternative Protein | Type: B2B
-**founding_maturity:** Early stage | Maturity: Pilot / Early Growth
+**founding_date:** Not stated
+**maturity_stage:** Early Growth
 **geography:** United States (headquarters); global food industry supply chain relevance
 
 #### Description
@@ -342,13 +311,15 @@ ingredients at high land, water, and energy cost.
 **title:** Using Every Part of the Climate-Friendly Sorghum Crop
 **url:** https://www.ellenmacarthurfoundation.org/circular-examples/using-every-part-of-the-climate-friendly-sorghum-crop-gabanna-foodworks-and
 **confidence_score:** High
+**retrieval_tags:** circular-inputs, circular-supplies, sustainable-product-design, waste-as-resource, industrial-symbiosis, biological-cycle, B2B2C, SME, consortium, Netherlands, EU, food-and-agriculture, biodiversity, design, production, end-of-life, cross-stage, wasted-end-of-life-value, unsustainable-materials, regulatory-compliance, consumer-demand-shift, resource-cost-scarcity, emissions-reduction, new-revenue, supply-chain-resilience, brand-differentiation, sorghum, whole-crop-use, agricultural-waste, regenerative-agriculture, by-product-valorisation, multi-sector-consortium
 
 #### Organization
 
 **org_name:** Gabanna Foodworks; VORM; Springtail; Howard Koster (farmer); Rechstreex
 **org_one_liner:** Gabanna Foodworks leads a five-partner Dutch consortium that uses the entire sorghum plant -- grain, stalks, and leaves -- across food and non-food applications, eliminating crop waste while building commercial business models around a regenerative, climate-resilient crop.
 **org_profile:** Size: SME / Consortium | Industry: Food & Agriculture / Regenerative Food Systems | Type: B2B2C
-**founding_maturity:** Big Food Redesign Challenge participant | Maturity: Pilot
+**founding_date:** Not stated
+**maturity_stage:** Pilot
 **geography:** Netherlands
 
 #### Description
@@ -418,13 +389,15 @@ and input demand.
 **title:** Making New Products from Urban Organic Waste Streams
 **url:** https://www.ellenmacarthurfoundation.org/circular-examples/de-clique
 **confidence_score:** High
+**retrieval_tags:** resource-recovery, waste-as-resource, industrial-symbiosis, recycle-upcycle, circular-supplies, biological-cycle, B2B, SME, startup, Netherlands, food-and-agriculture, cities, end-of-life, distribution, cross-stage, wasted-end-of-life-value, unexploited-customer-engagement, regulatory-compliance, consumer-demand-shift, internal-mandate, new-revenue, emissions-reduction, cost-reduction, supply-chain-resilience, coffee-grounds, orange-peels, urban-organics, source-separation, purity, urban-waste, Amsterdam, cosmetics, biomaterials, cycle-couriers, EV-logistics
 
 #### Organization
 
 **org_name:** De Clique
 **org_one_liner:** De Clique uses cycle couriers and electric vehicles to collect urban food by-products -- coffee grounds, orange peels, and other organic waste -- as pure separated streams from Amsterdam businesses, and sells these to innovators and product manufacturers who transform them into cosmetics, food ingredients, and biomaterials.
 **org_profile:** Size: SME / Startup | Industry: Urban Waste Logistics / Circular Materials | Type: B2B
-**founding_maturity:** Operational in Amsterdam | Maturity: Growth
+**founding_date:** Not stated
+**maturity_stage:** Growth
 **geography:** Netherlands (Amsterdam)
 
 #### Description
@@ -492,139 +465,15 @@ material inputs.
 
 ## Field Taxonomy and Controlled Vocabularies
 
-This section defines the controlled vocabulary for the key classification fields
-used across all entries. Use these definitions to interpret field values during
-retrieval and to correctly classify new entries added to this knowledge base.
-
----
-
-### G -- Circular Business Model (Primary)
-
-The top-level strategic pattern the case exemplifies. Each entry carries exactly
-one primary model.
-
-| Value | Definition |
-|---|---|
-| **Circular Inputs** | Products made from recycled, renewable, or bio-based materials that eliminate the use of virgin or toxic inputs. Includes circular supplies and sustainable product design strategies. |
-| **Sharing Platform** | A platform or system that enables users to share, rent, or access products or assets rather than own them outright, increasing utilization rates across the user base. |
-| **Product as a Service** | The producer retains ownership of the product and charges customers for the service or performance it delivers (e.g., per use, per outcome, or subscription), creating a financial incentive for durability, efficiency, and end-of-life recovery. |
-| **Product Use Extension** | Business models that keep products and components in use for longer through repair, remanufacturing, refurbishment, resale, or upgrading, deferring or avoiding end of life. |
-| **Resource Recovery** | Systems that recover energy, materials, or nutrients from products or waste streams at end of life, through recycling, upcycling, anaerobic digestion, composting, or industrial symbiosis. |
-
----
-
-### H -- Circular Sub-Models
-
-One or more sub-models that describe the specific circular mechanisms deployed
-within the primary model. Entries may carry multiple values.
-
-| Value | Definition |
-|---|---|
-| **Circular supplies** | Sourcing inputs that are recycled, renewable, or bio-based, replacing virgin or hazardous materials. |
-| **Sustainable product design** | Designing products to use fewer materials, last longer, be safer, or be more easily repaired, disassembled, or recycled. |
-| **Share** | Enabling multiple users to access the same physical asset sequentially or simultaneously, peer-to-peer or platform-mediated. |
-| **Pay-per-use** | Charging customers only for the units of service or output they actually consume rather than for ownership of the product. |
-| **Performance as a service** | Charging for a guaranteed outcome or level of service, such as lux of light or degrees of cooling -- outcome-based pricing. |
-| **Repair and maintain** | Servicing and fixing products to restore function and extend useful life, avoiding premature replacement. |
-| **Upgrade** | Improving a product's capability or appearance to extend its relevance and life, avoiding full replacement. |
-| **Remanufacture** | Restoring a used product or component to original specification, typically via disassembly, cleaning, inspection, replacement of worn parts, and testing. |
-| **Resell** | Selling a product for a second or subsequent time to a new owner through a secondary market, second-hand or pre-owned. |
-| **Return** | Bringing nutrients or materials back to the biological or technical cycle after use, through composting, recycling, or soil amendment. |
-| **Recycle / upcycle** | Processing end-of-life materials into new raw material inputs, ideally at equal or higher quality (upcycling) rather than lower quality (downcycling). |
-| **Take-back / gamified returns** | Manufacturer or retailer-operated programs that collect used products or packaging from customers, often with an incentive such as a discount, deposit, or loyalty points. |
-| **Waste-as-resource (industrial symbiosis)** | One company's waste or by-product becomes a productive input for another company, eliminating disposal and replacing virgin material. |
-| **Product as a service** | The producer retains ownership; the customer pays for access or use. (Sub-model variant -- see also G definition.) |
-
----
-
-### AC -- Inefficiency Type
-
-The underlying linear economy failure the circular model addresses. Entries may
-carry multiple values.
-
-| Value | Definition |
-|---|---|
-| **Wasted end-of-life value** | Valuable materials, components, or nutrients are lost at end of product or material life, through landfill, incineration, or unrecovered disposal. |
-| **Unsustainable materials** | Products or processes rely on virgin, toxic, non-renewable, or ecologically harmful inputs that deplete natural systems. |
-| **Premature product life** | Products are discarded or replaced before their functional life is exhausted, due to design, fashion cycles, or lack of repair options. |
-| **Underutilised capacity** | Physical assets (products, equipment, space, vehicles) sit idle for a significant portion of their potential productive life. |
-| **Unexploited customer engagement** | Existing customer relationships or touchpoints are not used to create circular value, such as no take-back program, no service model, or no loyalty loop. |
-
----
-
-### AD -- Economic / Regulatory Pressure
-
-The primary external or internal driver that motivated the circular initiative.
-Entries may carry multiple values.
-
-| Value | Definition |
-|---|---|
-| **Internal mandate or leadership commitment** | A founder's mission, CEO commitment, or board-level strategic decision drove the circular initiative, not primarily external pressure. |
-| **Consumer demand shift** | Changing customer preferences, values, or purchasing behavior toward sustainable, ethical, or low-waste options created market pull. |
-| **Regulatory / compliance pressure** | Existing or anticipated legislation, standards, or policy requirements made the circular model necessary or commercially advantageous. |
-| **Investor or ESG pressure** | Institutional investors, ESG ratings, sustainability disclosure requirements, or capital market expectations drove the circular transition. |
-| **Competitor or market pressure** | Competitive dynamics, such as rivals launching circular models, new market entrants, or shifting industry norms, prompted the circular response. |
-| **Resource cost or scarcity** | Rising costs, supply volatility, or strategic scarcity of virgin materials, energy, or water made circular inputs or efficiency economically attractive. |
-
----
-
-### AE -- Success Criteria
-
-The primary metric or outcome against which the circular initiative is evaluated.
-Entries may carry multiple values.
-
-| Value | Definition |
-|---|---|
-| **Cost reduction** | The circular model reduces input costs, waste disposal costs, energy costs, or total cost of ownership for the organization or its customers. |
-| **New revenue or market access** | The circular model opens a new revenue stream, customer segment, or market that the linear model could not access. |
-| **Customer retention or deepened relationship** | The circular model creates a longer-term or more frequent relationship with customers, through service contracts, take-back, subscription, or loyalty. |
-| **Brand differentiation** | The circular model creates a distinct, credible sustainability positioning that differentiates the organization from linear competitors. |
-| **Regulatory compliance** | The circular model enables the organization to meet existing or anticipated legal, policy, or reporting requirements. |
-| **Supply chain resilience** | The circular model reduces dependency on volatile, scarce, or geopolitically risky virgin material inputs by closing material loops internally or locally. |
-| **Emissions or resource reduction target** | The circular model is primarily evaluated against a quantified environmental goal, such as carbon, waste, water, or material reduction, rather than a financial metric. |
-
----
-
-### AH -- Prototype Readiness Statement (Classification)
-
-Indicates how fully the case supports a user-facing circular prototype. Used to
-assess which entries can be directly adapted for concept generation.
-
-| Value | Definition |
-|---|---|
-| **Prototype-ready (complete sentence)** | A complete sentence following the pattern: "The user [does X], and in return receives [Y], while the producer closes the [loop name] loop by [doing Z]." All three elements are present and specific enough to prototype a user interaction. All entries in this file meet this standard. |
-| **Mechanic present but not prototype-ready** | The circular mechanic is identifiable (e.g., take-back exists, service model exists) but the case lacks sufficient detail on the user interaction, incentive structure, or return exchange to draft a complete prototype sentence. |
-| **Design principle only** | The case describes a design philosophy, material choice, or policy framework rather than a discrete product-user interaction. No testable circular exchange between a user and a producer is described. Applies to most policy/governance cases, research projects, and supply-chain-only interventions. |
+> Controlled vocabulary for all classification fields (G, H, AC, AD, AE, AH) is maintained in [circular_prototype_rag_registry.md](circular_prototype_rag_registry.md), Section 11. Do not edit definitions here.
 
 ---
 
 ## RAG Usage Notes
 
-### Prompt Matching Guidance
+> General retrieval priorities and prototype generation template: see [circular_prototype_rag_registry.md](circular_prototype_rag_registry.md), Section 12.
 
-When retrieving entries for prototype generation, prioritize matching on:
-
-1. `circular_model_primary` -- the broadest strategic pattern (Resource Recovery vs. Circular Inputs)
-2. `org_profile` -- org size and type (Startup vs. SME vs. consortium; B2B vs. B2C vs. B2B2C)
-3. `value_chain_stage` -- where in the chain the target organization operates
-4. `inefficiency_type` -- what waste or underperformance the prototype must address
-5. `geography` -- for regulatory and cultural context alignment
-6. `material_resource_loop` -- the specific food by-product stream or crop fraction involved
-
-### Prototype Generation Template
-
-Use the following structure when generating a concept prototype from a retrieved entry:
-
-```
-ANALOGOUS CASE: [id] -- [title]
-ORGANIZATION MATCH: [why the org profile is analogous]
-CIRCULAR LOOP PATTERN: [circular_model_primary] via [circular_sub_models]
-HOW IT WORKS: [prototype_readiness_statement adapted to target org]
-KEY CAPABILITIES REQUIRED: [capability_requirements]
-KNOWN BARRIERS: [barriers_challenges]
-REGULATORY TAILWIND: [regulatory_policy_enabler adapted to target market]
-SUCCESS METRIC ANALOGY: [quantified_impact adapted to target scale]
-```
+When matching food waste upcycling entries, add a sixth retrieval priority: `material_resource_loop` -- the specific food by-product stream or crop fraction involved.
 
 ### Sector-Specific Matching Notes
 
@@ -645,14 +494,6 @@ SUCCESS METRIC ANALOGY: [quantified_impact adapted to target scale]
   targeting dense business districts; relevant for any model built on pure
   stream separation logistics as the core value creation mechanism.
 
-### Confidence and Data Quality
-
-All entries in this file carry a `confidence_score` of **High**, sourced
-directly from the Ellen MacArthur Foundation circular examples database.
-Field values marked "Not stated" in the source have been omitted rather than
-interpolated. Do not treat omitted fields as negative evidence -- they reflect
-source limitations, not model failure.
-
 ---
 
-*End of file -- food-waste-upcycling-RAG.md | schema v1.1*
+*End of file -- food-waste-upcycling-RAG.md | schema v1.2*
