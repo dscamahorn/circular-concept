@@ -3,10 +3,12 @@
 <!-- schema_version: increment when field names, structure, or controlled vocabulary change -->
 <!-- Controlled vocabulary for classification fields: see circular_prototype_rag_registry.md, Section 4 -->
 <!-- role attribute values: filter=structured metadata for pre-filtering; prose=free text for semantic embedding; id=identifier, excluded from both -->
+<!-- classification fields (role="filter") are the sole pre-filter layer; retrieval_tags have been removed as redundant -->
+<!-- on <pressure> and <criterion> elements, role="filter" means: filter on the @type attribute; element text content is supplementary prose context -->
 <rag_knowledge_base
   rag_id="food-waste-upcycling"
   rag_version="1.0"
-  schema_version="1.3"
+  schema_version="1.4"
   created="2026-04-21"
   min_confidence="High"
   entry_id_prefix="FWU"
@@ -21,38 +23,6 @@
       <title role="prose">Brewing Beer from Surplus Bread</title>
       <url role="id">https://www.ellenmacarthurfoundation.org/circular-examples/brewing-beer-from-surplus-bread</url>
       <confidence_score role="filter">High</confidence_score>
-      <retrieval_tags>
-        <tag role="filter">resource-recovery</tag>
-        <tag role="filter">waste-as-resource</tag>
-        <tag role="filter">industrial-symbiosis</tag>
-        <tag role="filter">recycle-upcycle</tag>
-        <tag role="filter">circular-supplies</tag>
-        <tag role="filter">biological-cycle</tag>
-        <tag role="filter">B2C</tag>
-        <tag role="filter">SME</tag>
-        <tag role="filter">United-Kingdom</tag>
-        <tag role="filter">food-and-agriculture</tag>
-        <tag role="filter">food-and-beverage</tag>
-        <tag role="filter">production</tag>
-        <tag role="filter">end-of-life</tag>
-        <tag role="filter">cross-stage</tag>
-        <tag role="filter">wasted-end-of-life-value</tag>
-        <tag role="filter">unsustainable-materials</tag>
-        <tag role="filter">consumer-demand-shift</tag>
-        <tag role="filter">internal-mandate</tag>
-        <tag role="filter">regulatory-compliance</tag>
-        <tag role="filter">emissions-reduction</tag>
-        <tag role="filter">brand-differentiation</tag>
-        <tag role="filter">new-revenue</tag>
-        <tag role="filter">surplus-bread</tag>
-        <tag role="filter">beer-brewing</tag>
-        <tag role="filter">upcycling</tag>
-        <tag role="filter">food-waste</tag>
-        <tag role="filter">by-product-valorisation</tag>
-        <tag role="filter">craft-beer</tag>
-        <tag role="filter">open-source</tag>
-        <tag role="filter">surplus-food</tag>
-      </retrieval_tags>
 
       <organization>
         <org_name role="id">Toast Ale</org_name>
@@ -111,14 +81,23 @@
 
       <context>
         <regulatory_policy_enabler role="prose"><![CDATA[UK food waste reduction targets; Courtauld Commitment voluntary framework; general EU and UK sustainability reporting expectations create commercial incentive for suppliers to demonstrate waste diversion.]]></regulatory_policy_enabler>
-        <economic_regulatory_pressure role="prose"><![CDATA[Consumer demand shift; internal mandate or leadership commitment; regulatory / compliance pressure (food waste targets)]]></economic_regulatory_pressure>
-        <success_criteria role="prose">Emissions or resource reduction target; brand differentiation; new revenue or market access</success_criteria>
+        <economic_regulatory_pressure>
+          <pressure type="Consumer demand shift" role="filter"/>
+          <pressure type="Internal mandate or leadership commitment" role="filter"/>
+          <pressure type="Regulatory / compliance pressure" role="filter">food waste targets</pressure>
+        </economic_regulatory_pressure>
+        <success_criteria>
+          <criterion type="Emissions or resource reduction target" role="filter"/>
+          <criterion type="Brand differentiation" role="filter"/>
+          <criterion type="New revenue or market access" role="filter"/>
+        </success_criteria>
         <barriers_challenges role="prose"><![CDATA[Consistent supply of quality surplus bread; maintaining food-safety certification for upcycled inputs; consumer education on upcycled-ingredient products; scaling collection logistics as production grows.]]></barriers_challenges>
         <circular_maturity_prior role="prose">Low (most craft breweries source 100% virgin malt with no waste-input integration)</circular_maturity_prior>
         <capability_requirements role="prose"><![CDATA[Relationships with local bakeries or food businesses for reliable surplus bread supply; food-safety certification for upcycled grain substitutes; basic supply chain adaptation within existing brewing infrastructure; brand storytelling capability around waste provenance.]]></capability_requirements>
       </context>
 
       <prototype_readiness>
+        <readiness_class role="filter">Prototype-ready (complete sentence)</readiness_class>
         <statement role="prose"><![CDATA[A bakery or food business identifies surplus bread as a reliable by-product stream and partners with a local craft brewery to supply it as a malted grain substitute; the brewery produces a co-branded beer that carries the surplus-bread story on pack; both parties share the waste-diversion metric in their sustainability reporting, and the brewery optionally adopts the open-source Toast Ale recipe to reduce development costs and time to market.]]></statement>
       </prototype_readiness>
       <matching_note role="prose"><![CDATA[Best analogue for food and beverage companies with an identifiable surplus input stream and craft or premium positioning; also relevant for any organization exploring open-source circular model sharing.]]></matching_note>
@@ -129,38 +108,6 @@
       <title role="prose">Radical Transparency in Collaborations to Eradicate Food Waste</title>
       <url role="id">https://www.ellenmacarthurfoundation.org/circular-examples/radical-transparency-in-collaborations-to-eradicate-food-waste-rescued</url>
       <confidence_score role="filter">High</confidence_score>
-      <retrieval_tags>
-        <tag role="filter">resource-recovery</tag>
-        <tag role="filter">waste-as-resource</tag>
-        <tag role="filter">industrial-symbiosis</tag>
-        <tag role="filter">take-back</tag>
-        <tag role="filter">recycle-upcycle</tag>
-        <tag role="filter">biological-cycle</tag>
-        <tag role="filter">B2C</tag>
-        <tag role="filter">SME</tag>
-        <tag role="filter">startup</tag>
-        <tag role="filter">United-Kingdom</tag>
-        <tag role="filter">food-and-agriculture</tag>
-        <tag role="filter">distribution</tag>
-        <tag role="filter">product-use</tag>
-        <tag role="filter">end-of-life</tag>
-        <tag role="filter">cross-stage</tag>
-        <tag role="filter">wasted-end-of-life-value</tag>
-        <tag role="filter">unexploited-customer-engagement</tag>
-        <tag role="filter">consumer-demand-shift</tag>
-        <tag role="filter">regulatory-compliance</tag>
-        <tag role="filter">internal-mandate</tag>
-        <tag role="filter">new-revenue</tag>
-        <tag role="filter">brand-differentiation</tag>
-        <tag role="filter">emissions-reduction</tag>
-        <tag role="filter">surplus-food</tag>
-        <tag role="filter">cosmetically-rejected</tag>
-        <tag role="filter">subscription-box</tag>
-        <tag role="filter">farm-surplus</tag>
-        <tag role="filter">transparency</tag>
-        <tag role="filter">agricultural-waste</tag>
-        <tag role="filter">DTC</tag>
-      </retrieval_tags>
 
       <organization>
         <org_name role="id">Rescued</org_name>
@@ -182,7 +129,6 @@
         <circular_model_primary role="filter">Resource Recovery</circular_model_primary>
         <circular_sub_models>
           <sub_model role="filter">Waste-as-resource (industrial symbiosis)</sub_model>
-          <sub_model role="filter">Take-back / gamified returns</sub_model>
           <sub_model role="filter">Recycle / upcycle</sub_model>
         </circular_sub_models>
         <loop_type_emf role="filter">Biological cycle</loop_type_emf>
@@ -220,14 +166,23 @@
 
       <context>
         <regulatory_policy_enabler role="prose"><![CDATA[UK food waste reduction commitments; Courtauld Commitment; WRAP food waste targets; growing retailer sustainability reporting requirements that create pressure on supply chains to demonstrate waste diversion.]]></regulatory_policy_enabler>
-        <economic_regulatory_pressure role="prose"><![CDATA[Consumer demand shift; regulatory / compliance pressure (food waste targets); internal mandate or leadership commitment]]></economic_regulatory_pressure>
-        <success_criteria role="prose">New revenue or market access; brand differentiation; emissions or resource reduction target</success_criteria>
+        <economic_regulatory_pressure>
+          <pressure type="Consumer demand shift" role="filter"/>
+          <pressure type="Regulatory / compliance pressure" role="filter">food waste targets</pressure>
+          <pressure type="Internal mandate or leadership commitment" role="filter"/>
+        </economic_regulatory_pressure>
+        <success_criteria>
+          <criterion type="New revenue or market access" role="filter"/>
+          <criterion type="Brand differentiation" role="filter"/>
+          <criterion type="Emissions or resource reduction target" role="filter"/>
+        </success_criteria>
         <barriers_challenges role="prose"><![CDATA[Maintaining consistent supply of quality surplus produce across seasons; logistics and cold-chain cost for subscription delivery; consumer retention in the subscription model; educating consumers on cosmetic imperfection as no indicator of edibility.]]></barriers_challenges>
         <circular_maturity_prior role="prose"><![CDATA[Low (most farm surplus goes to waste streams or low-value feed; direct-to-consumer surplus channels are nascent)]]></circular_maturity_prior>
         <capability_requirements role="prose"><![CDATA[Reliable farm surplus supply network with forward supply planning capability; subscription e-commerce and logistics infrastructure; provenance tracking and storytelling capability; consumer acquisition and retention for subscription model.]]></capability_requirements>
       </context>
 
       <prototype_readiness>
+        <readiness_class role="filter">Prototype-ready (complete sentence)</readiness_class>
         <statement role="prose"><![CDATA[A farmer or agricultural cooperative with predictable surplus or cosmetically rejected produce partners with a direct-to-consumer platform that curates weekly or bi-weekly subscription boxes; each box carries item-level provenance disclosure explaining why each product was surplus; consumers pay a discounted subscription price and receive a transparent impact summary per delivery, while the farmer receives a reliable commercial revenue stream on produce that would otherwise be wasted.]]></statement>
       </prototype_readiness>
       <matching_note role="prose"><![CDATA[Best analogue for direct-to-consumer food startups, farm cooperatives, or retailers seeking a subscription-based surplus diversion channel with a consumer transparency narrative.]]></matching_note>
@@ -238,39 +193,6 @@
       <title role="prose">Alternative Meat Made from Food By-Products</title>
       <url role="id">https://www.ellenmacarthurfoundation.org/circular-examples/planetarians</url>
       <confidence_score role="filter">High</confidence_score>
-      <retrieval_tags>
-        <tag role="filter">resource-recovery</tag>
-        <tag role="filter">waste-as-resource</tag>
-        <tag role="filter">industrial-symbiosis</tag>
-        <tag role="filter">circular-supplies</tag>
-        <tag role="filter">recycle-upcycle</tag>
-        <tag role="filter">biological-cycle</tag>
-        <tag role="filter">B2B</tag>
-        <tag role="filter">startup</tag>
-        <tag role="filter">United-States</tag>
-        <tag role="filter">food-and-agriculture</tag>
-        <tag role="filter">food-technology</tag>
-        <tag role="filter">production</tag>
-        <tag role="filter">end-of-life</tag>
-        <tag role="filter">cross-stage</tag>
-        <tag role="filter">wasted-end-of-life-value</tag>
-        <tag role="filter">unsustainable-materials</tag>
-        <tag role="filter">resource-cost-scarcity</tag>
-        <tag role="filter">consumer-demand-shift</tag>
-        <tag role="filter">regulatory-compliance</tag>
-        <tag role="filter">cost-reduction</tag>
-        <tag role="filter">new-revenue</tag>
-        <tag role="filter">emissions-reduction</tag>
-        <tag role="filter">supply-chain-resilience</tag>
-        <tag role="filter">alternative-protein</tag>
-        <tag role="filter">fermentation</tag>
-        <tag role="filter">food-by-products</tag>
-        <tag role="filter">spent-grain</tag>
-        <tag role="filter">brewery</tag>
-        <tag role="filter">vegetable-oil</tag>
-        <tag role="filter">upcycling</tag>
-        <tag role="filter">food-waste</tag>
-      </retrieval_tags>
 
       <organization>
         <org_name role="id">Planetarians</org_name>
@@ -329,14 +251,24 @@
 
       <context>
         <regulatory_policy_enabler role="prose"><![CDATA[Growing regulatory and market pressure on alternative protein industry to reduce land and water footprint; food waste valorisation incentives in US and EU food policy; novel food ingredient approval pathways in key markets.]]></regulatory_policy_enabler>
-        <economic_regulatory_pressure role="prose"><![CDATA[Resource cost or scarcity; consumer demand shift; regulatory / compliance pressure (novel food and waste valorisation)]]></economic_regulatory_pressure>
-        <success_criteria role="prose">Cost reduction; new revenue or market access; emissions or resource reduction target; supply chain resilience</success_criteria>
+        <economic_regulatory_pressure>
+          <pressure type="Resource cost or scarcity" role="filter"/>
+          <pressure type="Consumer demand shift" role="filter"/>
+          <pressure type="Regulatory / compliance pressure" role="filter">novel food and waste valorisation</pressure>
+        </economic_regulatory_pressure>
+        <success_criteria>
+          <criterion type="Cost reduction" role="filter"/>
+          <criterion type="New revenue or market access" role="filter"/>
+          <criterion type="Emissions or resource reduction target" role="filter"/>
+          <criterion type="Supply chain resilience" role="filter"/>
+        </success_criteria>
         <barriers_challenges role="prose"><![CDATA[Regulatory approval for novel fermented food ingredients in target markets; scaling SSF production capacity; consumer and manufacturer acceptance of fungal fermentation-derived protein; securing reliable and consistent waste carbohydrate supply from industrial partners.]]></barriers_challenges>
         <circular_maturity_prior role="prose"><![CDATA[Low (industrial food waste streams typically have no protein recovery pathway; alternative protein inputs are predominantly virgin agricultural)]]></circular_maturity_prior>
         <capability_requirements role="prose"><![CDATA[Solid State Fermentation technology and process IP; food safety and novel ingredient regulatory capability; B2B commercial partnerships with both waste generators and food manufacturers; fermentation scale-up infrastructure.]]></capability_requirements>
       </context>
 
       <prototype_readiness>
+        <readiness_class role="filter">Prototype-ready (complete sentence)</readiness_class>
         <statement role="prose"><![CDATA[An industrial food processor generating carbohydrate-rich by-products (spent grain from a brewery, defatted meal from a vegetable oil plant) enters a valorisation partnership with a fermentation technology company; the by-product stream is processed via Solid State Fermentation into a high-protein ingredient sold to alternative protein manufacturers; the food processor receives a valorisation payment or gate-fee credit instead of paying for waste disposal, while the ingredient buyer sources a lower-cost, lower-footprint protein input with a documented circular provenance.]]></statement>
       </prototype_readiness>
       <matching_note role="prose"><![CDATA[Best analogue for B2B food technology startups targeting industrial food processors as waste input partners and alternative protein manufacturers as buyers; relevant for any fermentation-based upcycling model.]]></matching_note>
@@ -347,40 +279,6 @@
       <title role="prose">Using Every Part of the Climate-Friendly Sorghum Crop</title>
       <url role="id">https://www.ellenmacarthurfoundation.org/circular-examples/using-every-part-of-the-climate-friendly-sorghum-crop-gabanna-foodworks-and</url>
       <confidence_score role="filter">High</confidence_score>
-      <retrieval_tags>
-        <tag role="filter">circular-inputs</tag>
-        <tag role="filter">circular-supplies</tag>
-        <tag role="filter">sustainable-product-design</tag>
-        <tag role="filter">waste-as-resource</tag>
-        <tag role="filter">industrial-symbiosis</tag>
-        <tag role="filter">biological-cycle</tag>
-        <tag role="filter">B2B2C</tag>
-        <tag role="filter">SME</tag>
-        <tag role="filter">consortium</tag>
-        <tag role="filter">Netherlands</tag>
-        <tag role="filter">EU</tag>
-        <tag role="filter">food-and-agriculture</tag>
-        <tag role="filter">biodiversity</tag>
-        <tag role="filter">design</tag>
-        <tag role="filter">production</tag>
-        <tag role="filter">end-of-life</tag>
-        <tag role="filter">cross-stage</tag>
-        <tag role="filter">wasted-end-of-life-value</tag>
-        <tag role="filter">unsustainable-materials</tag>
-        <tag role="filter">regulatory-compliance</tag>
-        <tag role="filter">consumer-demand-shift</tag>
-        <tag role="filter">resource-cost-scarcity</tag>
-        <tag role="filter">emissions-reduction</tag>
-        <tag role="filter">new-revenue</tag>
-        <tag role="filter">supply-chain-resilience</tag>
-        <tag role="filter">brand-differentiation</tag>
-        <tag role="filter">sorghum</tag>
-        <tag role="filter">whole-crop-use</tag>
-        <tag role="filter">agricultural-waste</tag>
-        <tag role="filter">regenerative-agriculture</tag>
-        <tag role="filter">by-product-valorisation</tag>
-        <tag role="filter">multi-sector-consortium</tag>
-      </retrieval_tags>
 
       <organization>
         <org_name role="id">Gabanna Foodworks; VORM; Springtail; Howard Koster (farmer); Rechstreex</org_name>
@@ -440,14 +338,24 @@
 
       <context>
         <regulatory_policy_enabler role="prose"><![CDATA[EU Common Agricultural Policy reform toward regenerative and biodiversity-supporting farming practices; Dutch national nitrogen reduction targets creating demand for lower-input crop alternatives; EU Farm to Fork Strategy sustainability requirements.]]></regulatory_policy_enabler>
-        <economic_regulatory_pressure role="prose"><![CDATA[Regulatory / compliance pressure (EU CAP reform, nitrogen reduction); consumer demand shift (regenerative food); resource cost or scarcity]]></economic_regulatory_pressure>
-        <success_criteria role="prose">Emissions or resource reduction target; new revenue or market access; supply chain resilience; brand differentiation</success_criteria>
+        <economic_regulatory_pressure>
+          <pressure type="Regulatory / compliance pressure" role="filter">EU CAP reform, nitrogen reduction</pressure>
+          <pressure type="Consumer demand shift" role="filter">regenerative food</pressure>
+          <pressure type="Resource cost or scarcity" role="filter"/>
+        </economic_regulatory_pressure>
+        <success_criteria>
+          <criterion type="Emissions or resource reduction target" role="filter"/>
+          <criterion type="New revenue or market access" role="filter"/>
+          <criterion type="Supply chain resilience" role="filter"/>
+          <criterion type="Brand differentiation" role="filter"/>
+        </success_criteria>
         <barriers_challenges role="prose"><![CDATA[Developing commercially viable markets for non-food crop fractions (stalks, leaves) at scale; coordinating a multi-partner consortium across food and non-food sectors; consumer familiarity with sorghum as a food ingredient; agronomic scaling of sorghum cultivation in the Netherlands.]]></barriers_challenges>
         <circular_maturity_prior role="prose"><![CDATA[Low (crop residue waste is the norm across most grain agriculture; whole-plant commercialization is rare outside established industrial crops)]]></circular_maturity_prior>
         <capability_requirements role="prose"><![CDATA[Agronomy and crop processing expertise across food and non-food fractions; multi-sector consortium governance structure; market development capability for novel food ingredients and bio-based materials; grant and challenge-prize management at pilot stage.]]></capability_requirements>
       </context>
 
       <prototype_readiness>
+        <readiness_class role="filter">Prototype-ready (complete sentence)</readiness_class>
         <statement role="prose"><![CDATA[A farmer cultivating a climate-resilient, whole-plant-use crop (sorghum, hemp, or amaranth) enters a consortium agreement with a food company, a non-food materials buyer, and a local retailer; the grain fraction is developed as a consumer food product, the stalks or leaves are sold as a bio-based material input to the non-food partner, and the farmer receives revenue from all three fractions simultaneously; the retailer co-brands the food product with the full-crop provenance story, and the consortium applies for regenerative agriculture grants to fund agronomic scale-up.]]></statement>
       </prototype_readiness>
       <matching_note role="prose"><![CDATA[Best analogue for multi-partner consortia targeting whole-crop or whole-plant commercial value across food and non-food verticals; relevant for regenerative agriculture business model design.]]></matching_note>
@@ -458,43 +366,6 @@
       <title role="prose">Making New Products from Urban Organic Waste Streams</title>
       <url role="id">https://www.ellenmacarthurfoundation.org/circular-examples/de-clique</url>
       <confidence_score role="filter">High</confidence_score>
-      <retrieval_tags>
-        <tag role="filter">resource-recovery</tag>
-        <tag role="filter">waste-as-resource</tag>
-        <tag role="filter">industrial-symbiosis</tag>
-        <tag role="filter">recycle-upcycle</tag>
-        <tag role="filter">circular-supplies</tag>
-        <tag role="filter">biological-cycle</tag>
-        <tag role="filter">B2B</tag>
-        <tag role="filter">SME</tag>
-        <tag role="filter">startup</tag>
-        <tag role="filter">Netherlands</tag>
-        <tag role="filter">food-and-agriculture</tag>
-        <tag role="filter">cities</tag>
-        <tag role="filter">end-of-life</tag>
-        <tag role="filter">distribution</tag>
-        <tag role="filter">cross-stage</tag>
-        <tag role="filter">wasted-end-of-life-value</tag>
-        <tag role="filter">unexploited-customer-engagement</tag>
-        <tag role="filter">regulatory-compliance</tag>
-        <tag role="filter">consumer-demand-shift</tag>
-        <tag role="filter">internal-mandate</tag>
-        <tag role="filter">new-revenue</tag>
-        <tag role="filter">emissions-reduction</tag>
-        <tag role="filter">cost-reduction</tag>
-        <tag role="filter">supply-chain-resilience</tag>
-        <tag role="filter">coffee-grounds</tag>
-        <tag role="filter">orange-peels</tag>
-        <tag role="filter">urban-organics</tag>
-        <tag role="filter">source-separation</tag>
-        <tag role="filter">purity</tag>
-        <tag role="filter">urban-waste</tag>
-        <tag role="filter">Amsterdam</tag>
-        <tag role="filter">cosmetics</tag>
-        <tag role="filter">biomaterials</tag>
-        <tag role="filter">cycle-couriers</tag>
-        <tag role="filter">EV-logistics</tag>
-      </retrieval_tags>
 
       <organization>
         <org_name role="id">De Clique</org_name>
@@ -553,14 +424,24 @@
 
       <context>
         <regulatory_policy_enabler role="prose"><![CDATA[Dutch and EU waste hierarchy legislation prioritising material recovery over energy recovery; Amsterdam Green City ambitions; EU circular economy action plan targets for biological material reuse; Extended Producer Responsibility frameworks creating incentives for waste stream separation at source.]]></regulatory_policy_enabler>
-        <economic_regulatory_pressure role="prose"><![CDATA[Regulatory / compliance pressure (waste hierarchy, EPR); consumer demand shift (urban sustainability); internal mandate or leadership commitment]]></economic_regulatory_pressure>
-        <success_criteria role="prose"><![CDATA[New revenue or market access; emissions or resource reduction target; cost reduction (for waste generators); supply chain resilience (for material buyers)]]></success_criteria>
+        <economic_regulatory_pressure>
+          <pressure type="Regulatory / compliance pressure" role="filter">waste hierarchy, EPR</pressure>
+          <pressure type="Consumer demand shift" role="filter">urban sustainability</pressure>
+          <pressure type="Internal mandate or leadership commitment" role="filter"/>
+        </economic_regulatory_pressure>
+        <success_criteria>
+          <criterion type="New revenue or market access" role="filter"/>
+          <criterion type="Emissions or resource reduction target" role="filter"/>
+          <criterion type="Cost reduction" role="filter">for waste generators</criterion>
+          <criterion type="Supply chain resilience" role="filter">for material buyers</criterion>
+        </success_criteria>
         <barriers_challenges role="prose"><![CDATA[Ensuring stream purity through behavioral compliance by waste-generating businesses; achieving sufficient urban collection density for logistics unit economics; developing and maintaining a reliable buyer market for each stream type; scaling beyond Amsterdam without city-specific density advantages.]]></barriers_challenges>
         <circular_maturity_prior role="prose"><![CDATA[Low (urban organic waste is predominantly mixed and sent to anaerobic digestion; source-separated collection for high-value upcycling is rare outside specialist pilots)]]></circular_maturity_prior>
         <capability_requirements role="prose"><![CDATA[Urban logistics capability (low-emission collection at scale); source-separation training and behavioral compliance infrastructure for waste-generating businesses; material characterization and quality assurance for each stream type; buyer network development across cosmetics, ingredients, and biomaterials sectors.]]></capability_requirements>
       </context>
 
       <prototype_readiness>
+        <readiness_class role="filter">Prototype-ready (complete sentence)</readiness_class>
         <statement role="prose"><![CDATA[A startup or municipal waste operator in a dense urban area recruits cafes, juice bars, and food businesses to separate coffee grounds, citrus peels, or other consistent organic by-product streams at source; low-emission couriers collect each stream as a pure, labeled batch; the operator sells curated streams to cosmetics formulators, food ingredient developers, or biomaterial researchers who cannot reliably source these inputs otherwise; each waste-generating business receives a disposal cost credit and a verifiable sustainability metric, while the operator earns a margin between the collection fee and the material sale price.]]></statement>
       </prototype_readiness>
       <matching_note role="prose"><![CDATA[Best analogue for urban circular economy startups targeting dense business districts; relevant for any model built on pure stream separation logistics as the core value creation mechanism.]]></matching_note>
