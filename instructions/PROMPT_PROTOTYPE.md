@@ -35,11 +35,11 @@ New revenue, cost reduction, compliance, brand differentiation. This is your pri
 ### Step 1: Analyze the Organization Profile
 
 1. Identify the primary value chain inefficiency from Question 2 using this taxonomy:
-   - Unsustainable material use
-   - Underused capacity
-   - Short product lifetime
    - Wasted end-of-life value
-   - Missed customer relationship value
+   - Unsustainable material use
+   - Premature product life
+   - Underutilized capacity
+   - Unexploited customer engagement
    - Toxic or non-recoverable material content
    - Waste-stream volume with no destination
 
