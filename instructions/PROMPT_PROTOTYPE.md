@@ -66,11 +66,16 @@ Every concept must be built on at least one of these **prototype-ready mechanics
 | **Resale / second-hand marketplace** | Producer or platform brokers the product's second life | Extended revenue from the same unit |
 | **Waste-as-resource (industrial symbiosis)** | One organization's waste becomes another's input material | Waste disposal cost eliminated; input cost reduced |
 
-### Step 3: Use RAG Context (When Provided)
+### Step 3: Use RAG Context
 
-If you receive relevant case studies or circular model examples:
+Use the RAG context provided to ground and inspire concepts.
 
-1. **Match by analogy:** Look for similar org profiles, industries, or inefficiency types
+1. **Select analogue entries:** Scan available RAG entries and select the single most relevant analogue using this priority order:
+   a. `inefficiency_type` — does the case address the same inefficiency identified? This is the strongest generative signal.
+   b. `circular_model_primary` — does the case share the same broad strategic pattern? Use this to confirm strategic alignment after matching on inefficiency.
+   c. `org_profile` — org size and type (SME vs. large enterprise; B2B vs. B2C vs. B2B2C)
+   d. `value_chain_stage` — where in the chain the target organization operates
+   e. `geography` — for regulatory and cultural context alignment
 2. **Extract patterns:** Identify the circular mechanic, user interaction, and value exchange
 3. **Adapt, don't copy:** Use the case as inspiration, but tailor the concept to the specific organization profile
 4. **Reference capabilities:** Note what infrastructure, partnerships, or capabilities the analogous case required
@@ -102,6 +107,10 @@ For each concept, you must produce:
 **Outcome alignment:** [Which success criteria from Question 5 does this concept address, and why? Be directional, not numerical. Do not invent projections or financial estimates. A prototype may be explored to find out whether the concept works, not to assert that it will.]
 
 **Assumptions to test:** [What would need to be true for this concept to work? State these as a list of open questions or testable hypotheses, not resolved facts. These are the things the prototype is designed to find out.]
+
+**Analogues used:**
+- [Company name (CaseID): one sentence on why this case was selected, referencing the matching criterion. One sentence on how it was adapted rather than replicated.]
+- [Repeat for each additional case drawn on for this concept. Omit this field entirely if no sufficiently relevant case exists.]
 ```
 
 ### Step 5: Apply the Prototype-Readiness Heuristic Test
@@ -182,11 +191,7 @@ Brand differentiation through a credible sustainability story, cost reduction vi
 
 ### Generated Output
 
-**Profile analysis** The primary inefficiency is the wasted end-of-life value. Production off-cuts, broken pieces, and surplus ingredients are discarded with no commercial recovery. Pressure is mounting due to a shift in consumer demand toward sustainable products, ESG reporting expectations, and rising input costs. Success criteria include brand differentiation, cost reduction through recovered value, and capture of a new consumer segment. Yum sits at circular maturity zero since no recovery model exists yet.
-
----
-
-**Referenced case studies** Algramo (CPR-006): Pay-per-use smart refill model for FMCG packaging maps directly to Yum's single-use elimination goal; adapted from a liquid household product dispenser for low-income markets to a dry snack refill format at targeted retail locations.
+**Profile analysis** The primary inefficiency is the wasted end-of-life value. Production off-cuts, broken pieces, and surplus ingredients are discarded with no commercial recovery. Pressure is mounting due to a shift in consumer demand toward sustainable products, ESG reporting expectations, and rising input costs. Success criteria include brand differentiation, cost reduction through recovered value, and capture of a new consumer segment. Yum is immature in it's circular journey since no recovery model exists yet.
 
 ---
 
@@ -214,6 +219,10 @@ Yum identifies a local manufacturer whose production process can absorb broken s
 * Does the by-product meet food safety standards required for any intended downstream use? 
 * Is the margin between disposal cost savings and partner revenue positive enough to justify the operational change?
 * Would Yum's ESG team recognize a B2B symbiosis partnership as satisfying their reporting obligations, or would they require a consumer-visible model?
+
+**Analogues used:**
+- Algramo (CPR-006): Pay-per-use smart refill model for FMCG packaging maps directly to Yum's single-use elimination goal; adapted from a liquid household product dispenser for low-income markets to a dry snack refill format at targeted retail locations.
+
 
 ---
 
