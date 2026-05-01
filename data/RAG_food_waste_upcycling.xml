@@ -37,7 +37,7 @@
         <geography role="filter">United Kingdom (primary); international licensing partnerships</geography>
       </organization>
 
-      <description role="prose"><![CDATA[Toast Ale replaces approximately one-third of the malted grain in its brewing process with surplus bread collected from bakeries and food businesses. By upcycling a high-volume food waste stream -- 44% of all bread in the UK is wasted -- into a premium craft beer ingredient, Toast Ale creates commercial value from waste while reducing the agricultural land, water, and energy needed for conventional malted grain production. The company shares its recipe openly to encourage replication and donates 100% of profits to Feedback, a food waste charity campaigning for systemic change. The open-source recipe model allows other breweries globally to adopt the same process without licensing fees, amplifying environmental impact beyond Toast Ale's own production volume.]]></description>
+      <description role="prose"><![CDATA[Toast Ale replaces approximately one-third of the malted grain in its brewing process with surplus bread collected from bakeries and food businesses. By upcycling a high-volume food waste stream, where 44% of all bread in the UK is wasted, into a premium craft beer ingredient, Toast Ale creates commercial value from waste while reducing the agricultural land, water, and energy needed for conventional malted grain production. The company shares its recipe openly to encourage replication and donates 100% of profits to Feedback, a food waste charity campaigning for systemic change. The open-source recipe model allows other breweries globally to adopt the same process without licensing fees, amplifying environmental impact beyond Toast Ale's own production volume.]]></description>
 
       <classification>
         <topic_tags role="filter">Food &amp; Agriculture, Business</topic_tags>
@@ -53,7 +53,7 @@
           <stage role="filter">End of Life</stage>
           <stage role="filter">Cross-stage</stage>
         </value_chain_stage>
-        <material_resource_loop role="prose"><![CDATA[Surplus bread from bakeries and food businesses replaces approximately one-third of malted grain in beer brewing -- biological waste-to-value loop]]></material_resource_loop>
+        <material_resource_loop role="prose"><![CDATA[Surplus bread from bakeries and food businesses replaces approximately one-third of malted grain in beer brewing: biological waste-to-value loop]]></material_resource_loop>
       </classification>
 
       <linear_model_replaced>
@@ -122,7 +122,7 @@
         <geography role="filter">United Kingdom</geography>
       </organization>
 
-      <description role="prose"><![CDATA[Rescued sources surplus and rejected food from farmers and producers -- produce discarded due to cosmetic imperfection, overproduction, or market rejection -- and sells it directly to consumers through a subscription box model. The company applies radical transparency, sharing the exact origin and reason for surplus of every product in each box. This transparency model builds consumer trust and creates a differentiated narrative around "ugly" or oversupplied produce. Rescued partners with farmers to create a reliable commercial channel for food that would otherwise be ploughed back into fields or sent to anaerobic digestion, providing farmers with additional revenue and consumers with reduced-price food. The subscription model creates predictable demand that helps farmers plan surplus diversion in advance, rather than reacting to rejection after harvest.]]></description>
+      <description role="prose"><![CDATA[Rescued sources surplus and rejected food from farmers and producers, specifically produce discarded due to cosmetic imperfection, overproduction, or market rejection, and sells it directly to consumers through a subscription box model. The company applies radical transparency, sharing the exact origin and reason for surplus of every product in each box. This transparency model builds consumer trust and creates a differentiated narrative around "ugly" or oversupplied produce. Rescued partners with farmers to create a reliable commercial channel for food that would otherwise be ploughed back into fields or sent to anaerobic digestion, providing farmers with additional revenue and consumers with reduced-price food. The subscription model creates predictable demand that helps farmers plan surplus diversion in advance, rather than reacting to rejection after harvest.]]></description>
 
       <classification>
         <topic_tags role="filter">Food &amp; Agriculture, Business</topic_tags>
@@ -138,7 +138,7 @@
           <stage role="filter">End of Life</stage>
           <stage role="filter">Cross-stage</stage>
         </value_chain_stage>
-        <material_resource_loop role="prose"><![CDATA[Surplus and cosmetically imperfect food from farms (fruits, vegetables, and other produce that would otherwise go to waste) -- biological waste-to-consumer loop]]></material_resource_loop>
+        <material_resource_loop role="prose"><![CDATA[Surplus and cosmetically imperfect food from farms (fruits, vegetables, and other produce that would otherwise go to waste): biological waste-to-consumer loop]]></material_resource_loop>
       </classification>
 
       <linear_model_replaced>
@@ -223,7 +223,7 @@
           <stage role="filter">End of Life</stage>
           <stage role="filter">Cross-stage</stage>
         </value_chain_stage>
-        <material_resource_loop role="prose"><![CDATA[Waste carbohydrates from vegetable oil, brewing, and distilling industries converted via fungal Solid State Fermentation into alternative meat protein ingredients -- industrial by-product to food ingredient loop]]></material_resource_loop>
+        <material_resource_loop role="prose"><![CDATA[Waste carbohydrates from vegetable oil, brewing, and distilling industries converted via fungal Solid State Fermentation into alternative meat protein ingredients: industrial by-product to food ingredient loop]]></material_resource_loop>
       </classification>
 
       <linear_model_replaced>
@@ -282,7 +282,7 @@
 
       <organization>
         <org_name role="id">Gabanna Foodworks; VORM; Springtail; Howard Koster (farmer); Rechstreex</org_name>
-        <org_one_liner role="prose"><![CDATA[Gabanna Foodworks leads a five-partner Dutch consortium that uses the entire sorghum plant -- grain, stalks, and leaves -- across food and non-food applications, eliminating crop waste while building commercial business models around a regenerative, climate-resilient crop.]]></org_one_liner>
+        <org_one_liner role="prose"><![CDATA[Gabanna Foodworks leads a five-partner Dutch consortium that uses the entire sorghum plant, grain, stalks, and leaves, across food and non-food applications, eliminating crop waste while building commercial business models around a regenerative, climate-resilient crop.]]></org_one_liner>
         <org_profile>
           <size role="filter">SME / Consortium</size>
           <industry role="filter">Food &amp; Agriculture / Regenerative Food Systems</industry>
@@ -293,7 +293,7 @@
         <geography role="filter">Netherlands</geography>
       </organization>
 
-      <description role="prose"><![CDATA[Gabanna Foodworks, a Dutch food company and Big Food Redesign Challenge participant, leads a five-partner collaboration that uses the entire sorghum plant -- grain, stalks, and leaves -- across food and non-food applications to eliminate crop waste. The consortium includes real estate developer VORM, specialist wholesaler Springtail, farmer Howard Koster, and local retailer Rechstreex. Sorghum is a climate-resilient, drought-tolerant grain that improves soil structure, and the project develops business models that enable multiple parts of the crop to generate commercial value simultaneously, creating a full-loop use model for a regenerative crop. The collaboration is notable for its cross-sector partnership structure, combining food, real estate, retail, and agriculture into a single whole-plant circular model.]]></description>
+      <description role="prose"><![CDATA[Gabanna Foodworks, a Dutch food company and Big Food Redesign Challenge participant, leads a five-partner collaboration that uses the entire sorghum plant, grain, stalks, and leaves, across food and non-food applications to eliminate crop waste. The consortium includes real estate developer VORM, specialist wholesaler Springtail, farmer Howard Koster, and local retailer Rechstreex. Sorghum is a climate-resilient, drought-tolerant grain that improves soil structure, and the project develops business models that enable multiple parts of the crop to generate commercial value simultaneously, creating a full-loop use model for a regenerative crop. The collaboration is notable for its cross-sector partnership structure, combining food, real estate, retail, and agriculture into a single whole-plant circular model.]]></description>
 
       <classification>
         <topic_tags role="filter">Food &amp; Agriculture, Biodiversity, Business</topic_tags>
@@ -310,7 +310,7 @@
           <stage role="filter">End of Life</stage>
           <stage role="filter">Cross-stage</stage>
         </value_chain_stage>
-        <material_resource_loop role="prose"><![CDATA[Sorghum crop (whole-plant use -- grain for food, stalks and leaves for non-food applications); regenerative soil-improving crop replacing resource-intensive conventional grain alternatives]]></material_resource_loop>
+        <material_resource_loop role="prose"><![CDATA[Sorghum crop (whole-plant use: grain for food, stalks and leaves for non-food applications); regenerative soil-improving crop replacing resource-intensive conventional grain alternatives]]></material_resource_loop>
       </classification>
 
       <linear_model_replaced>
@@ -369,7 +369,7 @@
 
       <organization>
         <org_name role="id">De Clique</org_name>
-        <org_one_liner role="prose"><![CDATA[De Clique uses cycle couriers and electric vehicles to collect urban food by-products -- coffee grounds, orange peels, and other organic waste -- as pure separated streams from Amsterdam businesses, and sells these to innovators and product manufacturers who transform them into cosmetics, food ingredients, and biomaterials.]]></org_one_liner>
+        <org_one_liner role="prose"><![CDATA[De Clique uses cycle couriers and electric vehicles to collect urban food by-products, specifically coffee grounds, orange peels, and other organic waste, as pure separated streams from Amsterdam businesses, and sells these to innovators and product manufacturers who transform them into cosmetics, food ingredients, and biomaterials.]]></org_one_liner>
         <org_profile>
           <size role="filter">SME / Startup</size>
           <industry role="filter">Urban Waste Logistics / Circular Materials</industry>
@@ -380,7 +380,7 @@
         <geography role="filter">Netherlands (Amsterdam)</geography>
       </organization>
 
-      <description role="prose"><![CDATA[De Clique uses cycle couriers and electric vehicles to collect food by-products -- coffee grounds, orange peels, and other organic waste -- as pure separated streams from Amsterdam businesses, and sells these to third-party innovators and product manufacturers who transform them into cosmetics, food ingredients, and biomaterials. The purity of each collected stream is the core value proposition: by collecting streams separately at source, De Clique preserves the chemical and material value of each by-product, making it suitable for high-value upcycling rather than mixed compost or anaerobic digestion. Currently only 2% of urban organic waste is reused in the Netherlands, representing an almost entirely untapped material supply base. De Clique's logistics model -- low-emission urban collection at the point of generation -- addresses the aggregation and purity problem that prevents most urban organic waste from reaching upcycling markets.]]></description>
+      <description role="prose"><![CDATA[De Clique uses cycle couriers and electric vehicles to collect food by-products, specifically coffee grounds, orange peels, and other organic waste, as pure separated streams from Amsterdam businesses, and sells these to third-party innovators and product manufacturers who transform them into cosmetics, food ingredients, and biomaterials. The purity of each collected stream is the core value proposition: by collecting streams separately at source, De Clique preserves the chemical and material value of each by-product, making it suitable for high-value upcycling rather than mixed compost or anaerobic digestion. Currently only 2% of urban organic waste is reused in the Netherlands, representing an almost entirely untapped material supply base. De Clique's logistics model, low-emission urban collection at the point of generation, addresses the aggregation and purity problem that prevents most urban organic waste from reaching upcycling markets.]]></description>
 
       <classification>
         <topic_tags role="filter">Food &amp; Agriculture, Cities, Business</topic_tags>
@@ -396,7 +396,7 @@
           <stage role="filter">Distribution</stage>
           <stage role="filter">Cross-stage</stage>
         </value_chain_stage>
-        <material_resource_loop role="prose"><![CDATA[Urban food by-products (coffee grounds, orange peels, organic waste) collected as pure separated streams from businesses and sold to product manufacturers -- biological waste-to-value urban circular loop]]></material_resource_loop>
+        <material_resource_loop role="prose"><![CDATA[Urban food by-products (coffee grounds, orange peels, organic waste) collected as pure separated streams from businesses and sold to product manufacturers: biological waste-to-value urban circular loop]]></material_resource_loop>
       </classification>
 
       <linear_model_replaced>

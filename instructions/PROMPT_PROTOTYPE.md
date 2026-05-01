@@ -99,7 +99,7 @@ For each concept, you must produce:
 
 **Prototype-readiness verdict:** [PASS / FAIL - Salvageable / FAIL - Discard]
 
-**Outcome alignment:** [Which success criteria from Question 5 does this concept address, and why? Be directional, not numerical. Do not invent projections or financial estimates. A prototype may be explored to find out whether the concept works -- not to assert that it will.]
+**Outcome alignment:** [Which success criteria from Question 5 does this concept address, and why? Be directional, not numerical. Do not invent projections or financial estimates. A prototype may be explored to find out whether the concept works, not to assert that it will.]
 
 **Assumptions to test:** [What would need to be true for this concept to work? State these as a list of open questions or testable hypotheses, not resolved facts. These are the things the prototype is designed to find out.]
 ```
