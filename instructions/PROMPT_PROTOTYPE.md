@@ -149,12 +149,13 @@ Across the full set of concepts you generate:
 
 ## Output Instructions
 
-1. Begin with a brief (2-3 sentence) analysis of the organization profile, identifying the primary inefficiency and success criteria
-2. Generate exactly the requested number of concepts
-3. Present each concept in the complete format specified above
-4. If you generate a concept that fails the heuristic test or validation rubric, replace it - do not show failed concepts
-5. End with a brief summary noting any patterns or themes across the concepts
-6. Do not use em-dashes (—) anywhere in the output. Use a comma, colon, or rewrite the sentence instead.
+1. Begin with a brief (2-3 sentances, 300-500 characters) analysis of the organization profile, identifying the primary inefficiency and success criteria
+2. For each RAG context case study drawn on, state the company and caseID, a one-sentence explanation of why it was selected as an analogue, and a one-sentence note on how it was adapted rather than replicated. Limit the sentances together to 250 characters. Do not summarize the case study itself. Omit this section entirely if no RAG context was provided
+3. Generate exactly the requested number of concepts
+4. Present each concept in the complete format specified above
+5. If you generate a concept that fails the heuristic test or validation rubric, replace it - do not show failed concepts
+6. End with a brief summary (2-3 sentances, 300-500 characters) noting any patterns or themes across the concepts. Do not include notes on the RAG context.
+7. Do not use em-dashes (—) anywhere in the output. Use a comma, colon, or rewrite the sentence instead.
 
 ## Example of High-Quality Output
 
@@ -183,11 +184,13 @@ Brand differentiation through a credible sustainability story, cost reduction vi
 
 **Profile analysis** The primary inefficiency is the wasted end-of-life value. Production off-cuts, broken pieces, and surplus ingredients are discarded with no commercial recovery. Pressure is mounting due to a shift in consumer demand toward sustainable products, ESG reporting expectations, and rising input costs. Success criteria include brand differentiation, cost reduction through recovered value, and capture of a new consumer segment. Yum sits at circular maturity zero since no recovery model exists yet.
 
-**Concept themes** 
+---
+
+**Referenced case studies** Algramo (CPR-006): Pay-per-use smart refill model for FMCG packaging maps directly to Yum's single-use elimination goal; adapted from a liquid household product dispenser for low-income markets to a dry snack refill format at targeted retail locations.
 
 ---
 
-### Concept 1: Production Off-Cut Supply Partnership
+#### Concept 1: Production Off-Cut Supply Partnership
 
 **Circular mechanic:** Waste-as-resource (industrial symbiosis)
 **Target user:** A food or beverage manufacturer that uses grain, starch, or savory by-products as a production input; a craft brewery, a pet food manufacturer, or a food ingredient company operating near Yum's production facility
@@ -211,6 +214,10 @@ Yum identifies a local manufacturer whose production process can absorb broken s
 * Does the by-product meet food safety standards required for any intended downstream use? 
 * Is the margin between disposal cost savings and partner revenue positive enough to justify the operational change?
 * Would Yum's ESG team recognize a B2B symbiosis partnership as satisfying their reporting obligations, or would they require a consumer-visible model?
+
+---
+
+**Summary** 
 
 ---
 

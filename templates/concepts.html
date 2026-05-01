@@ -51,8 +51,19 @@
               : 'border-terra-border'">
 
             <!-- ── Collapsed header ────────────────── -->
-            <div class="flex items-center gap-3 px-5 py-4 cursor-pointer select-none"
+            <div class="px-5 pt-4 pb-4 cursor-pointer select-none"
               @click="toggle(concept.number)">
+
+              <!-- Concept number + mechanic tag -->
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-semibold uppercase tracking-widest text-terra-muted"
+                  x-text="'Concept ' + concept.number"></span>
+                <span class="text-xs px-3 py-1 rounded-full bg-terra-cream-dark text-terra-muted truncate max-w-[220px]"
+                  x-text="concept.mechanic"></span>
+              </div>
+
+              <!-- Chevron + title + heart -->
+              <div class="flex items-center gap-3">
 
               <!-- Chevron -->
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -85,7 +96,8 @@
                 </svg>
               </button>
 
-            </div>
+              </div><!-- end chevron/title/heart row -->
+            </div><!-- end collapsed header -->
 
             <!-- ── Expanded body ───────────────────── -->
             <div x-show="isOpen(concept.number)"
