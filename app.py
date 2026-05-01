@@ -60,7 +60,11 @@ def _parse_llm_output(text):
             "verdict":    extract(section, "Prototype-readiness verdict"),
             "alignment":  extract(section, "Outcome alignment"),
             "assumptions":extract(section, "Assumptions to test"),
+            "analogues":  extract(section, "Citations"),
         })
+
+    # Strip any trailing citation bullet lines (RAG analogues the LLM appends to the opening block)
+    profile = re.sub(r'\n+(?:\s*[-*]\s+.+\n*)+$', '', profile).strip()
 
     # Strip any leading markdown heading line (## Profile analysis, **Profile analysis**, etc.)
     profile_lines = profile.splitlines()
@@ -117,7 +121,8 @@ def generate():
     n_concepts = max(1, min(8, n_concepts))
 
     system_prompt = _load_file("instructions/PROMPT_PROTOTYPE.md")
-    rag_context = _load_file("data/RAG_consumer_packaging_reuse.md")
+    rag_cpr = _load_file("data/RAG_consumer_packaging_reuse.xml")
+    rag_fwu = _load_file("data/RAG_food_waste_upcycling.xml")
 
     user_message = f"""**Question 1: What does the organization make or do?**
 {answers["q1"]}
@@ -139,7 +144,12 @@ def generate():
 **Number of concepts to generate:** {n_concepts}
 
 **RAG context:**
-{rag_context}
+
+[Consumer Packaging Reuse]
+{rag_cpr}
+
+[Food Waste and Upcycling]
+{rag_fwu}
 """
 
     try:

@@ -108,7 +108,7 @@ For each concept, you must produce:
 
 **Assumptions to test:** [What would need to be true for this concept to work? State these as a list of open questions or testable hypotheses, not resolved facts. These are the things the prototype is designed to find out.]
 
-**Analogues used:**
+**Citations:**
 - [Company name (CaseID): one sentence on why this case was selected, referencing the matching criterion. One sentence on how it was adapted rather than replicated.]
 - [Repeat for each additional case drawn on for this concept. Omit this field entirely if no sufficiently relevant case exists.]
 ```
@@ -159,12 +159,11 @@ Across the full set of concepts you generate:
 ## Output Instructions
 
 1. Begin with a brief (2-3 sentances, 300-500 characters) analysis of the organization profile, identifying the primary inefficiency and success criteria
-2. For each RAG context case study drawn on, state the company and caseID, a one-sentence explanation of why it was selected as an analogue, and a one-sentence note on how it was adapted rather than replicated. Limit the sentances together to 250 characters. Do not summarize the case study itself. Omit this section entirely if no RAG context was provided
-3. Generate exactly the requested number of concepts
-4. Present each concept in the complete format specified above
-5. If you generate a concept that fails the heuristic test or validation rubric, replace it - do not show failed concepts
-6. End with a brief summary (2-3 sentances, 300-500 characters) noting any patterns or themes across the concepts. Do not include notes on the RAG context.
-7. Do not use em-dashes (—) anywhere in the output. Use a comma, colon, or rewrite the sentence instead.
+2. Generate exactly the requested number of concepts
+3. Present each concept in the complete format specified above
+4. If you generate a concept that fails the heuristic test or validation rubric, replace it - do not show failed concepts
+5. End with a brief summary (2-3 sentances, 300-500 characters) noting any patterns or themes across the concepts. Do not include notes on the RAG context.
+6. Do not use em-dashes (—) anywhere in the output. Use a comma, colon, or rewrite the sentence instead.
 
 ## Example of High-Quality Output
 
@@ -220,7 +219,7 @@ Yum identifies a local manufacturer whose production process can absorb broken s
 * Is the margin between disposal cost savings and partner revenue positive enough to justify the operational change?
 * Would Yum's ESG team recognize a B2B symbiosis partnership as satisfying their reporting obligations, or would they require a consumer-visible model?
 
-**Analogues used:**
+**Citations:**
 - Algramo (CPR-006): Pay-per-use smart refill model for FMCG packaging maps directly to Yum's single-use elimination goal; adapted from a liquid household product dispenser for low-income markets to a dry snack refill format at targeted retail locations.
 
 
