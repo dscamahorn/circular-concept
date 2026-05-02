@@ -29,7 +29,15 @@ There are no lint or test commands configured beyond `test_apis.py`.
 
 ## Architecture
 
-Single-file Flask app (`app.py`) with Jinja2 templates. No blueprints, no database. State lives only in the Flask session (cookie-backed, keyed by `SECRET_KEY`).
+Flask app structured as a package (`app/`) with Jinja2 templates. No blueprints, no database. State lives only in the Flask session (cookie-backed, keyed by `SECRET_KEY`).
+
+**Package layout:**
+- `app/__init__.py` — Flask factory (`create_app()`), exports `app` instance for `flask run`
+- `app/routes.py` — all route handlers; imports path constants from `config.py`
+- `app/parser.py` — `_parse_llm_output()`, isolated from Flask
+- `config.py` — env var loading and `Path` constants for all file locations
+- `app/templates/` — Jinja2 templates
+- `app/static/` — static assets (CSS, JS)
 
 **Request flow:**
 1. `/` → `index.html` — landing page with Begin button
@@ -38,23 +46,23 @@ Single-file Flask app (`app.py`) with Jinja2 templates. No blueprints, no databa
 4. `/generate` (POST) → calls Anthropic API → parses output → `concepts.html`
 5. `/start-over` → clears session, redirects to `/`
 
-**LLM output parsing (`_parse_llm_output` in `app.py`):**
+**LLM output parsing (`app/parser.py`):**
 The Anthropic response is structured plain text delimited by `---` separators. The parser:
 - Extracts **profile analysis** via regex for `**Profile analysis:**`, with a fallback to text before the first `---` or `###`
-- Strips any leading `## Profile analysis` echo from the LLM
+- Strips any trailing citation bullet lines from the profile block
 - Splits on `\n+---+\n+` to get per-concept sections (each has a `### Concept N: Title` header)
-- Extracts named fields with `**Field name:**` regex per section
+- Extracts named fields with `**Field name:**` regex per section (case-insensitive)
 - Captures **themes** (closing summary) from the final section after the last concept
 
 Returns `(profile, themes, concepts)` — all three are passed to `concepts.html`.
 
 **System prompt and RAG:**
-- `instructions/PROMPT_PROTOTYPE.md` — the full system prompt loaded from disk on every `/generate` call
-- `data/RAG_consumer_packaging_reuse.xml` — consumer packaging reuse cases, appended to every user message
-- `data/RAG_food_waste_upcycling.xml` — food waste and upcycling cases, appended to every user message
-- `data/circular_prototype_rag_registry.md` — controlled vocabulary and schema reference (not sent to LLM; used for authoring consistency)
+- `prompts/PROMPT_PROTOTYPE.md` — the full system prompt loaded from disk on every `/generate` call
+- `knowledge/RAG_consumer_packaging_reuse.xml` — consumer packaging reuse cases, appended to every user message
+- `knowledge/RAG_food_waste_upcycling.xml` — food waste and upcycling cases, appended to every user message
+- `knowledge/circular_prototype_rag_registry.md` — controlled vocabulary and schema reference (not sent to LLM; used for authoring consistency)
 
-All files are read via `_load_file()` at request time (no caching), so edits take effect immediately without restarting Flask.
+All files are read at request time (no caching), so edits take effect immediately without restarting Flask.
 
 ## Frontend Stack
 
