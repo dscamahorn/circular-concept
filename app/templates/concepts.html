@@ -150,19 +150,26 @@
                 </div>
                 <div>
                   <p class="text-xs font-semibold uppercase tracking-widest text-terra-muted mb-1">Assumptions to Test</p>
-                  <p class="text-gray-700 leading-relaxed whitespace-pre-wrap" x-text="concept.assumptions"></p>
+                  <ul class="space-y-1">
+                    <template x-for="a in concept.assumptions" :key="a">
+                      <li class="text-sm text-gray-700 leading-relaxed flex gap-2">
+                        <span class="text-terra-muted flex-shrink-0 mt-0.5">·</span>
+                        <span x-text="a"></span>
+                      </li>
+                    </template>
+                  </ul>
                 </div>
 
-                <template x-if="concept.analogues">
+                <template x-if="concept.analogues && concept.analogues.length > 0">
                   <div class="col-span-2">
                     <hr class="border-terra-border mb-5" />
                     <p class="text-xs font-semibold uppercase tracking-widest text-terra-muted mb-2">Case Studies</p>
                     <ul class="space-y-2">
-                      <template x-for="line in analogueLines(concept.analogues)" :key="line">
+                      <template x-for="cite in concept.analogues" :key="cite.case_id">
                         <li class="text-sm text-gray-700 leading-relaxed flex gap-2">
                           <span class="text-terra-green flex-shrink-0">—</span>
                           <span>
-                            <span class="font-semibold" x-text="line.split(': ')[0]"></span><span x-show="line.includes(': ')">: </span><span x-text="line.includes(': ') ? line.split(': ').slice(1).join(': ') : ''"></span>
+                            <span class="font-semibold" x-text="cite.company + ' (' + cite.case_id + ')'"></span>: <span x-text="cite.rationale"></span>
                           </span>
                         </li>
                       </template>
@@ -208,12 +215,6 @@
       isFav(n)      { return this.favorites.includes(n); },
       toggle(n)     { this.open[n] = !this.open[n]; },
       isOpen(n)     { return !!this.open[n]; },
-
-      analogueLines(text) {
-        return text.split('\n')
-          .map(l => l.replace(/^[-*]\s*/, '').trim())
-          .filter(l => l.length > 0);
-      },
 
       toggleFav(n) {
         if (this.isFav(n)) {

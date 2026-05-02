@@ -88,29 +88,32 @@ For each concept, you must produce:
 
 #### Required Output Format:
 
-```
-### Concept [N]: [Descriptive Title]
+Each concept must be a `<concept number="N">` XML element with the following child elements:
 
-**Circular mechanic:** [Name from the mechanics table above]
-**Target user:** [Who performs the interaction - be specific, not generic]
-**Value chain inefficiency addressed:** [From Step 1 analysis]
-**Pressure addressed:** [From Question 3]
-
-**Concept description:**
-[3-4 sentences describing how the mechanic works in practice for this organization. Must include: who does what, when they do it, what value they receive, and how the loop closes. Be concrete and specific.]
-
-**Prototype-readiness sentence:**
-[Complete this sentence structure: "The user [does X], and in return receives [Y], while the producer closes the [loop name] loop by [doing Z]."]
-
-**Prototype-readiness verdict:** [PASS / FAIL - Salvageable / FAIL - Discard]
-
-**Outcome alignment:** [Which success criteria from Question 5 does this concept address, and why? Be directional, not numerical. Do not invent projections or financial estimates. A prototype may be explored to find out whether the concept works, not to assert that it will.]
-
-**Assumptions to test:** [What would need to be true for this concept to work? State these as a list of open questions or testable hypotheses, not resolved facts. These are the things the prototype is designed to find out.]
-
-**Citations:**
-- [Company name (CaseID): one sentence on why this case was selected, referencing the matching criterion. One sentence on how it was adapted rather than replicated.]
-- [Repeat for each additional case drawn on for this concept. Omit this field entirely if no sufficiently relevant case exists.]
+```xml
+<concept number="[N]">
+  <title>[Descriptive Title]</title>
+  <mechanic>[Name from the mechanics table above]</mechanic>
+  <target_user>[Who performs the interaction - be specific, not generic]</target_user>
+  <value_chain_inefficiency>[From Step 1 analysis]</value_chain_inefficiency>
+  <pressure_addressed>[From Question 3]</pressure_addressed>
+  <description><![CDATA[[3-4 sentences: who does what, when, what value they receive, how the loop closes. Be concrete and specific.]]]></description>
+  <prototype_sentence><![CDATA[The user [does X], and in return receives [Y], while the producer closes the [loop name] loop by [doing Z].]]></prototype_sentence>
+  <prototype_verdict>[PASS / FAIL - Salvageable / FAIL - Discard]</prototype_verdict>
+  <outcome_alignment><![CDATA[[Which success criteria from Question 5 does this concept address, and why? Be directional, not numerical. Do not invent projections or financial estimates. A prototype may be explored to find out whether the concept works, not to assert that it will.]]]></outcome_alignment>
+  <assumptions>
+    <assumption>[First open question or testable hypothesis]</assumption>
+    <assumption>[Repeat for each assumption. These are the things the prototype is designed to find out.]</assumption>
+  </assumptions>
+  <citations>
+    <citation>
+      <company>[Company name]</company>
+      <case_id>[CaseID]</case_id>
+      <rationale><![CDATA[[One sentence on why this case was selected. One sentence on how it was adapted rather than replicated.]]]></rationale>
+    </citation>
+    <!-- Omit <citations> entirely if no sufficiently relevant case exists -->
+  </citations>
+</concept>
 ```
 
 ### Step 5: Apply the Prototype-Readiness Heuristic Test
@@ -158,12 +161,13 @@ Across the full set of concepts you generate:
 
 ## Output Instructions
 
-1. Begin with a brief (2-3 sentances, 300-500 characters) analysis of the organization profile, identifying the primary inefficiency and success criteria
-2. Generate exactly the requested number of concepts
-3. Present each concept in the complete format specified above
-4. If you generate a concept that fails the heuristic test or validation rubric, replace it - do not show failed concepts
-5. End with a brief summary (2-3 sentances, 300-500 characters) noting any patterns or themes across the concepts. Do not include notes on the RAG context.
-6. Do not use em-dashes (—) anywhere in the output. Use a comma, colon, or rewrite the sentence instead.
+1. Output your entire response as valid XML wrapped in a single `<response>` root element. Do not output any text, markdown, or commentary outside the XML tags.
+2. Begin with a `<profile_analysis>` element containing a brief (2-3 sentences, 300-500 characters) analysis of the organization profile, identifying the primary inefficiency and success criteria.
+3. Generate exactly the requested number of concepts, each as a `<concept number="N">` element inside `<concepts>`.
+4. If you generate a concept that fails the heuristic test or validation rubric, replace it. Do not include failed concepts in the output.
+5. End with a `<summary>` element containing a brief (2-3 sentences, 300-500 characters) noting patterns or themes across the concepts. Do not include notes on the RAG context.
+6. Use CDATA sections (`<![CDATA[...]]>`) for any element containing prose, quotation marks, commas, or special characters.
+7. Do not use em-dashes (—) anywhere in the output. Use a comma, colon, or rewrite the sentence instead.
 
 ## Example of High-Quality Output
 
@@ -190,43 +194,40 @@ Brand differentiation through a credible sustainability story, cost reduction vi
 
 ### Generated Output
 
-**Profile analysis** The primary inefficiency is the wasted end-of-life value. Production off-cuts, broken pieces, and surplus ingredients are discarded with no commercial recovery. Pressure is mounting due to a shift in consumer demand toward sustainable products, ESG reporting expectations, and rising input costs. Success criteria include brand differentiation, cost reduction through recovered value, and capture of a new consumer segment. Yum is immature in it's circular journey since no recovery model exists yet.
+```xml
+<response>
+  <profile_analysis><![CDATA[The primary inefficiency is wasted end-of-life value: production off-cuts, broken pieces, and surplus ingredients are discarded with no commercial recovery. Pressure is mounting from consumer demand for sustainable products, ESG reporting expectations, and rising input costs. Success criteria include brand differentiation, cost reduction through recovered value, and capture of a new consumer segment.]]></profile_analysis>
 
----
+  <concepts>
+    <concept number="1">
+      <title>Production Off-Cut Supply Partnership</title>
+      <mechanic>Waste-as-resource (industrial symbiosis)</mechanic>
+      <target_user><![CDATA[A food or beverage manufacturer that uses grain, starch, or savory by-products as a production input: a craft brewery, a pet food manufacturer, or a food ingredient company operating near Yum's production facility.]]></target_user>
+      <value_chain_inefficiency>Wasted end-of-life value</value_chain_inefficiency>
+      <pressure_addressed>Rising input costs and ESG reporting expectations</pressure_addressed>
+      <description><![CDATA[Yum identifies a local manufacturer whose production process can absorb broken snacks, off-cut grain pieces, or surplus seasoning as a feedstock input rather than virgin material. Yum supplies that stream as a consistent, separated, and labeled by-product batch rather than sending it to disposal. The receiving partner pays a below-market ingredient price, converting Yum's disposal cost into a small revenue stream. Yum documents the volume diverted and the disposal cost avoided, creating a verifiable ESG metric.]]></description>
+      <prototype_sentence><![CDATA[The receiving manufacturer takes delivery of Yum's separated production off-cuts as a feedstock input, and in return pays a below-market ingredient price, while Yum closes the snack production waste loop by converting a disposal cost into a supply revenue and a documented ESG metric.]]></prototype_sentence>
+      <prototype_verdict>PASS</prototype_verdict>
+      <outcome_alignment><![CDATA[The partnership directly addresses cost reduction by converting a disposal cost line into a revenue line. It addresses ESG reporting by creating a quantifiable, auditable diversion metric. It contributes to brand differentiation if the partnership is made visible to consumers, though that depends on how publicly Yum chooses to tell the story. It does not on its own create a new consumer segment.]]></outcome_alignment>
+      <assumptions>
+        <assumption>Is there a manufacturer within viable logistics distance of Yum's facility that can absorb this specific by-product stream as a usable input?</assumption>
+        <assumption>Would the volume and consistency of Yum's off-cut output be sufficient for a partner to rely on it?</assumption>
+        <assumption>Does the by-product meet food safety standards required for any intended downstream use?</assumption>
+        <assumption>Is the margin between disposal cost savings and partner revenue positive enough to justify the operational change?</assumption>
+        <assumption>Would Yum's ESG team recognize a B2B symbiosis partnership as satisfying their reporting obligations, or would they require a consumer-visible model?</assumption>
+      </assumptions>
+      <citations>
+        <citation>
+          <company>Algramo</company>
+          <case_id>CPR-006</case_id>
+          <rationale><![CDATA[Selected because the dispensing model demonstrates how a product waste stream can become a commercial input channel; adapted from a liquid household product dispenser for low-income markets to a dry snack by-product supply partnership with a B2B manufacturer.]]></rationale>
+        </citation>
+      </citations>
+    </concept>
+  </concepts>
 
-#### Concept 1: Production Off-Cut Supply Partnership
-
-**Circular mechanic:** Waste-as-resource (industrial symbiosis)
-**Target user:** A food or beverage manufacturer that uses grain, starch, or savory by-products as a production input; a craft brewery, a pet food manufacturer, or a food ingredient company operating near Yum's production facility
-**Value chain inefficiency addressed:** Wasted end-of-life value
-**Pressure addressed:** Rising input costs + ESG reporting expectations
- 
-**Concept description:**
-Yum identifies a local manufacturer whose production process can absorb broken snacks, off-cut grain pieces, or surplus seasoning as a feedstock input rather than virgin material. Yum supplies that stream as a consistent, separated, and labeled by-product batch rather than sending it to disposal. The receiving partner pays a below-market ingredient price, lower than virgin inputs but above zero, converting Yum's disposal cost into a small revenue stream. Yum documents the volume diverted and the disposal cost avoided, creating a verifiable ESG metric. The receiving partner carries the sustainability story in their own supply chain reporting, and Yum can reference the partnership publicly as evidence that its production waste has a named commercial destination rather than landfill.
- 
-**Prototype-readiness sentence:**
-"The receiving manufacturer takes delivery of Yum's separated production off-cuts as a feedstock input, and in return pays a below-market ingredient price, while Yum closes the snack production waste loop by converting a disposal cost into a supply revenue and a documented ESG metric."
- 
-**Prototype-readiness verdict:** PASS
- 
-**Outcome alignment:** The partnership directly addresses cost reduction by converting a disposal cost line into a revenue line. It addresses ESG reporting by creating a quantifiable, auditable diversion metric, volume of by-product diverted from landfill, which is exactly the kind of concrete evidence ESG disclosure frameworks require. It contributes to brand differentiation if the partnership is made visible to consumers, though that depends on how publicly Yum chooses to tell the story. It does not on its own create a new consumer segment. That would require a consumer-facing component built on top of this foundation.
-
-**Assumptions to test:** 
-
-* Is there a manufacturer within viable logistics distance of Yum's facility that can absorb this specific by-product stream as a usable input? 
-* Would the volume and consistency of Yum's off-cut output be sufficient for a partner to rely on it?
-* Does the by-product meet food safety standards required for any intended downstream use? 
-* Is the margin between disposal cost savings and partner revenue positive enough to justify the operational change?
-* Would Yum's ESG team recognize a B2B symbiosis partnership as satisfying their reporting obligations, or would they require a consumer-visible model?
-
-**Citations:**
-- Algramo (CPR-006): Pay-per-use smart refill model for FMCG packaging maps directly to Yum's single-use elimination goal; adapted from a liquid household product dispenser for low-income markets to a dry snack refill format at targeted retail locations.
-
-
----
-
-**Summary** All three concepts address the same core inefficiency (single-use packaging with no end-of-life recovery) but attack it at different points in the consumer journey: at the moment of dispensing (Concept 1), at the moment of purchase through a deposit (Concept 2), and at the moment of disposal through a reward (Concept 3). Together they give Yum a portfolio that ranges from structurally transformative (the refill model eliminates single-use packaging entirely per transaction) to incrementally testable (the take-back scheme can be piloted with minimal infrastructure), allowing prioritization based on the organization's appetite for capital investment and behavior change risk.
-
----
+  <summary><![CDATA[This concept attacks the core inefficiency, wasted production off-cuts, at the supply chain level by converting a disposal cost into a commercial input for another manufacturer. It prioritizes ESG credibility and cost reduction over consumer visibility, making it most appropriate for organizations where internal reporting obligations are the primary near-term pressure.]]></summary>
+</response>
+```
 
 You are now ready to receive an organization profile and generate circular economy concept prototypes.

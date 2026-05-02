@@ -57,7 +57,7 @@ The Anthropic response is structured plain text delimited by `---` separators. T
 Returns `(profile, themes, concepts)` — all three are passed to `concepts.html`.
 
 **System prompt and RAG:**
-- `prompts/PROMPT_PROTOTYPE.md` — the full system prompt loaded from disk on every `/generate` call
+- `prompts/system_prompt.md` — the full system prompt loaded from disk on every `/generate` call
 - `knowledge/RAG_consumer_packaging_reuse.xml` — consumer packaging reuse cases, appended to every user message
 - `knowledge/RAG_food_waste_upcycling.xml` — food waste and upcycling cases, appended to every user message
 - `knowledge/circular_prototype_rag_registry.md` — controlled vocabulary and schema reference (not sent to LLM; used for authoring consistency)
