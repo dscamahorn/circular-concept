@@ -225,7 +225,7 @@ Yum identifies a local manufacturer whose production process can absorb broken s
 
 ---
 
-**Summary** 
+**Summary** All three concepts address the same core inefficiency (single-use packaging with no end-of-life recovery) but attack it at different points in the consumer journey: at the moment of dispensing (Concept 1), at the moment of purchase through a deposit (Concept 2), and at the moment of disposal through a reward (Concept 3). Together they give Yum a portfolio that ranges from structurally transformative (the refill model eliminates single-use packaging entirely per transaction) to incrementally testable (the take-back scheme can be piloted with minimal infrastructure), allowing prioritization based on the organization's appetite for capital investment and behavior change risk.
 
 ---
 
