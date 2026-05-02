@@ -60,7 +60,7 @@ Returns `(profile, themes, concepts)` — all three are passed to `concepts.html
 - `prompts/system_prompt.md` — the full system prompt loaded from disk on every `/generate` call
 - `knowledge/RAG_consumer_packaging_reuse.xml` — consumer packaging reuse cases, appended to every user message
 - `knowledge/RAG_food_waste_upcycling.xml` — food waste and upcycling cases, appended to every user message
-- `knowledge/circular_prototype_rag_registry.md` — controlled vocabulary and schema reference (not sent to LLM; used for authoring consistency)
+- `knowledge/rag_registry_circular_economy.md` — controlled vocabulary and schema reference (not sent to LLM; used for authoring consistency)
 
 All files are read at request time (no caching), so edits take effect immediately without restarting Flask.
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- rag_version: increment when entries are added, removed, or corrected -->
 <!-- schema_version: increment when field names, structure, or controlled vocabulary change -->
-<!-- Controlled vocabulary for classification fields: see circular_prototype_rag_registry.md, Section 4 -->
+<!-- Controlled vocabulary for classification fields: see rag_registry_circular_economy.md, Section 4 -->
 <!-- role attribute values: filter=structured metadata for pre-filtering; prose=free text for semantic embedding; id=identifier, excluded from both -->
 <!-- classification fields (role="filter") are the sole pre-filter layer; retrieval_tags have been removed as redundant -->
 <!-- on <pressure> and <criterion> elements, role="filter" means: filter on the @type attribute; element text content is supplementary prose context -->
@@ -14,7 +14,7 @@
   entry_id_prefix="CPR"
   topic_domain="Consumer Packaging Reuse"
   source_domain="Ellen MacArthur Foundation Circular Economy Examples"
-  registry="circular_prototype_rag_registry.md">
+  registry="rag_registry_circular_economy.md">
 
   <entries>
 
