@@ -15,7 +15,9 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY")
 GEMINI_API_KEY    = os.environ.get("GEMINI_API_KEY")
 SECRET_KEY        = os.environ.get("SECRET_KEY", "dev-change-this-in-production")
 
-PROMPT_FILE = ROOT / "prompts" / "system_prompt.md"
-CPR_RAG     = ROOT / "knowledge" / "RAG_consumer_packaging_reuse.xml"
-FWU_RAG     = ROOT / "knowledge" / "RAG_food_waste_upcycling.xml"
-BAS_RAG     = ROOT / "knowledge" / "RAG_b2b_asset_sharing.xml"
+PROMPT_FILE       = ROOT / "prompts" / "system_prompt.md"
+IMAGE_PROMPT_FILE = ROOT / "prompts" / "image_prompt.md"
+DESIGN_FILE       = ROOT / "docs"    / "DESIGN.md"
+CPR_RAG           = ROOT / "knowledge" / "RAG_consumer_packaging_reuse.xml"
+FWU_RAG           = ROOT / "knowledge" / "RAG_food_waste_upcycling.xml"
+BAS_RAG           = ROOT / "knowledge" / "RAG_b2b_asset_sharing.xml"

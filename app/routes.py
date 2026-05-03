@@ -1,7 +1,10 @@
+import base64
+
 from flask import redirect, render_template, request, session, url_for, jsonify
 
 import config
 from app.llm import call_anthropic
+from app.image_gen import build_image_prompt, call_gemini_image
 from app.parser import _parse_llm_output
 from app.rag import load_rag_context
 
@@ -62,6 +65,25 @@ def register_routes(app):
             concepts=concepts,
             n_concepts=n_concepts,
         )
+
+    @app.route("/visualize", methods=["POST"])
+    def visualize():
+        data      = request.get_json(silent=True) or {}
+        prototype = (data.get("prototype") or "").strip()
+        if not prototype:
+            return jsonify({"error": "No prototype sentence provided"}), 400
+
+        prompt = build_image_prompt(prototype)
+        if prompt is None:
+            return jsonify({"error": "Could not parse prototype sentence"}), 422
+
+        try:
+            png_bytes = call_gemini_image(prompt)
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
+
+        b64 = base64.b64encode(png_bytes).decode("utf-8")
+        return jsonify({"image": f"data:image/png;base64,{b64}"})
 
     @app.route("/start-over")
     def start_over():
