@@ -2,8 +2,8 @@ import anthropic as anthropic_sdk
 import config
 
 
-def call_anthropic(answers: dict, n_concepts: int, system_prompt: str, rag_context: str) -> str:
-    user_message = f"""**Question 1: What does the organization make or do?**
+def _build_user_message(answers: dict, n_concepts: int, rag_context: str) -> str:
+    return f"""**Question 1: What does the organization make or do?**
 {answers["q1"]}
 
 **Question 2: Where does waste, inefficiency, or end-of-life live in their value chain?**
@@ -26,6 +26,10 @@ def call_anthropic(answers: dict, n_concepts: int, system_prompt: str, rag_conte
 
 {rag_context}
 """
+
+
+def call_anthropic(answers: dict, n_concepts: int, system_prompt: str, rag_context: str) -> str:
+    user_message = _build_user_message(answers, n_concepts, rag_context)
     client = anthropic_sdk.Anthropic(api_key=config.ANTHROPIC_API_KEY)
     response = client.messages.create(
         model="claude-sonnet-4-6",
@@ -34,3 +38,17 @@ def call_anthropic(answers: dict, n_concepts: int, system_prompt: str, rag_conte
         messages=[{"role": "user", "content": user_message}],
     )
     return response.content[0].text
+
+
+def stream_anthropic(answers: dict, n_concepts: int, system_prompt: str, rag_context: str):
+    """Generator that yields raw text chunks from the Anthropic streaming API."""
+    user_message = _build_user_message(answers, n_concepts, rag_context)
+    client = anthropic_sdk.Anthropic(api_key=config.ANTHROPIC_API_KEY)
+    with client.messages.stream(
+        model="claude-sonnet-4-6",
+        max_tokens=8192,
+        system=system_prompt,
+        messages=[{"role": "user", "content": user_message}],
+    ) as stream:
+        for text in stream.text_stream:
+            yield text

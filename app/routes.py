@@ -1,12 +1,19 @@
 import base64
+import json
+import re
+import uuid
 
-from flask import redirect, render_template, request, session, url_for, jsonify
+from flask import Response, redirect, render_template, request, session, stream_with_context, url_for, jsonify
 
 import config
-from app.llm import call_anthropic
+from app.llm import call_anthropic, stream_anthropic
 from app.image_gen import build_image_prompt, call_gemini_image
 from app.parser import _parse_llm_output
 from app.rag import load_rag_context
+
+# Server-side cache for streamed concept results, keyed by per-request UUID.
+# Populated by /generate-stream, consumed once by /concepts.
+_concept_cache: dict = {}
 
 
 def register_routes(app):
@@ -66,14 +73,82 @@ def register_routes(app):
             n_concepts=n_concepts,
         )
 
+    @app.route("/generate-stream", methods=["POST"])
+    def generate_stream():
+        answers    = {f"q{i}": request.form.get(f"q{i}", "").strip() for i in range(1, 6)}
+        n_concepts = max(1, min(8, int(request.form.get("n_concepts", 3))))
+        session["answers"] = answers
+
+        stream_key = str(uuid.uuid4())
+        session["stream_key"] = stream_key
+
+        def sse(payload: dict) -> str:
+            return f"data: {json.dumps(payload)}\n\n"
+
+        def generate():
+            try:
+                system_prompt = config.load_file(config.PROMPT_FILE)
+                rag_context   = load_rag_context()
+            except Exception as e:
+                yield sse({"type": "error", "message": str(e)})
+                return
+
+            accumulated          = ""
+            concept_starts_seen  = 0
+            concept_ends_seen    = 0
+
+            try:
+                for chunk in stream_anthropic(answers, n_concepts, system_prompt, rag_context):
+                    accumulated += chunk
+
+                    new_starts = len(re.findall(r'<concept number="\d+">', accumulated))
+                    while concept_starts_seen < new_starts:
+                        concept_starts_seen += 1
+                        yield sse({"type": "concept_start", "number": concept_starts_seen})
+
+                    new_ends = accumulated.count("</concept>")
+                    while concept_ends_seen < new_ends:
+                        concept_ends_seen += 1
+                        yield sse({"type": "concept_end", "number": concept_ends_seen})
+
+            except Exception as e:
+                yield sse({"type": "error", "message": str(e)})
+                return
+
+            try:
+                profile_analysis, themes, concepts = _parse_llm_output(accumulated)
+                _concept_cache[stream_key] = {
+                    "profile_analysis": profile_analysis,
+                    "themes":           themes,
+                    "concepts":         concepts,
+                    "n_concepts":       n_concepts,
+                }
+                yield sse({"type": "done"})
+            except Exception as e:
+                yield sse({"type": "error", "message": str(e)})
+
+        return Response(
+            stream_with_context(generate()),
+            mimetype="text/event-stream",
+            headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
+        )
+
+    @app.route("/concepts")
+    def concepts():
+        stream_key = session.get("stream_key")
+        if not stream_key or stream_key not in _concept_cache:
+            return redirect(url_for("index"))
+        data = _concept_cache.pop(stream_key)
+        return render_template("concepts.html", **data)
+
     @app.route("/visualize", methods=["POST"])
     def visualize():
-        data      = request.get_json(silent=True) or {}
-        prototype = (data.get("prototype") or "").strip()
-        if not prototype:
-            return jsonify({"error": "No prototype sentence provided"}), 400
+        data         = request.get_json(silent=True) or {}
+        image_fields = data.get("image_fields") or {}
+        if not image_fields:
+            return jsonify({"error": "No image fields provided"}), 400
 
-        prompt = build_image_prompt(prototype)
+        prompt = build_image_prompt(image_fields)
         if prompt is None:
             return jsonify({"error": "Could not parse prototype sentence"}), 422
 

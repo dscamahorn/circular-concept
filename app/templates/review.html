@@ -15,7 +15,7 @@
   <h1 class="font-serif text-3xl font-semibold text-terra-green mb-2 text-center">Review your answers</h1>
   <p class="text-terra-muted text-sm text-center mb-10">Click the pencil to edit any answer before generating.</p>
 
-  <form method="POST" action="/generate" @submit="loading = true">
+  <form method="POST" action="/generate" @submit.prevent="handleSubmit($event)">
 
     <!-- Hidden inputs synced with Alpine state -->
     <input type="hidden" name="q1" :value="answers.q1">
@@ -114,14 +114,45 @@
     <!-- Loading overlay -->
     <div class="fixed inset-0 bg-terra-cream/90 flex flex-col items-center justify-center z-50 transition-opacity duration-200"
       :class="loading ? 'opacity-100' : 'opacity-0 pointer-events-none'">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-        stroke-width="1.6" stroke="currentColor"
-        class="w-10 h-10 text-terra-green animate-spin mb-5">
-        <path stroke-linecap="round" stroke-linejoin="round"
-          d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
-      </svg>
-      <p class="font-serif text-xl text-terra-green mb-1">Generating concepts…</p>
-      <p class="text-sm text-terra-muted">This takes about 2-3 minutes</p>
+
+      <p class="font-serif text-2xl font-semibold text-terra-green mb-1">Generating concepts…</p>
+      <p class="text-sm text-terra-muted mb-8">This takes about 2–3 minutes</p>
+
+      <!-- Per-concept progress bars -->
+      <div class="w-full max-w-xs space-y-4">
+        <template x-for="item in progressItems" :key="item.number">
+          <div class="flex items-center gap-3">
+
+            <span class="text-sm text-terra-muted w-20 flex-shrink-0 text-right"
+              x-text="'Concept ' + item.number"></span>
+
+            <div class="flex-1 h-1.5 bg-terra-border rounded-full overflow-hidden">
+              <div class="h-full rounded-full transition-all duration-500"
+                :class="item.state === 'waiting'
+                  ? 'w-0'
+                  : item.state === 'generating'
+                    ? 'w-full bg-terra-green animate-pulse'
+                    : 'w-full bg-terra-green'">
+              </div>
+            </div>
+
+            <span class="text-xs w-20 flex-shrink-0"
+              :class="item.state === 'complete' ? 'text-terra-green font-semibold' : 'text-terra-muted'"
+              x-text="item.state === 'waiting' ? 'Waiting' : item.state === 'generating' ? 'Generating…' : 'Done ✓'">
+            </span>
+
+          </div>
+        </template>
+      </div>
+
+      <!-- Error state -->
+      <template x-if="errorMessage">
+        <div class="mt-8 text-center">
+          <p class="text-sm text-red-600 mb-2" x-text="errorMessage"></p>
+          <a href="/review" class="text-sm text-terra-muted hover:text-terra-green transition-colors duration-150">← Try again</a>
+        </div>
+      </template>
+
     </div>
 
   </form>
@@ -131,10 +162,12 @@
 <script>
   function reviewData() {
     return {
-      answers: { ...initialAnswers },
-      editing: { q1: false, q2: false, q3: false, q4: false, q5: false },
-      n_concepts: 3,
-      loading: false,
+      answers:         { ...initialAnswers },
+      editing:         { q1: false, q2: false, q3: false, q4: false, q5: false },
+      n_concepts:      3,
+      loading:         false,
+      conceptProgress: [],   // 'waiting' | 'generating' | 'complete' per concept index
+      errorMessage:    null,
       questions: {
         q1: { label: 'Organization',          title: 'What does the organization make or do?' },
         q2: { label: 'Waste & Inefficiency',  title: 'Where does waste, inefficiency, or end-of-life live in their value chain?' },
@@ -142,7 +175,60 @@
         q4: { label: 'Exclusion Filter',      title: 'What circular territory have they already explored?' },
         q5: { label: 'Success Criteria',      title: 'What does a successful outcome look like for them?' },
       },
-      init() {}
+
+      init() {},
+
+      get progressItems() {
+        return Array.from({ length: this.n_concepts }, (_, i) => ({
+          number: i + 1,
+          state:  this.conceptProgress[i] || 'waiting',
+        }));
+      },
+
+      async handleSubmit(event) {
+        this.loading         = true;
+        this.errorMessage    = null;
+        this.conceptProgress = Array(this.n_concepts).fill('waiting');
+
+        const formData = new FormData(event.target);
+
+        try {
+          const response = await fetch('/generate-stream', { method: 'POST', body: formData });
+          const reader   = response.body.getReader();
+          const decoder  = new TextDecoder();
+          let   buffer   = '';
+
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+
+            buffer += decoder.decode(value, { stream: true });
+            const lines = buffer.split('\n');
+            buffer = lines.pop();
+
+            for (const line of lines) {
+              if (!line.startsWith('data: ')) continue;
+              const ev = JSON.parse(line.slice(6));
+
+              if (ev.type === 'concept_start') {
+                this.conceptProgress[ev.number - 1] = 'generating';
+                this.conceptProgress = [...this.conceptProgress];
+              } else if (ev.type === 'concept_end') {
+                this.conceptProgress[ev.number - 1] = 'complete';
+                this.conceptProgress = [...this.conceptProgress];
+              } else if (ev.type === 'done') {
+                window.location.href = '/concepts';
+              } else if (ev.type === 'error') {
+                this.errorMessage = ev.message || 'Something went wrong.';
+                this.loading = false;
+              }
+            }
+          }
+        } catch (err) {
+          this.errorMessage = 'Connection failed. Please try again.';
+          this.loading = false;
+        }
+      },
     }
   }
 </script>

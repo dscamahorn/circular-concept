@@ -281,7 +281,7 @@
           const res = await fetch('/visualize', {
             method:  'POST',
             headers: { 'Content-Type': 'application/json' },
-            body:    JSON.stringify({ prototype: concept.prototype }),
+            body:    JSON.stringify({ image_fields: concept.image_fields }),
           });
           const data = await res.json();
           if (!res.ok || data.error) {

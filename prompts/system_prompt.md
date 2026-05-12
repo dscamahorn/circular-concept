@@ -99,6 +99,13 @@ Each concept must be a `<concept number="N">` XML element with the following chi
   <pressure_addressed>[From Question 3]</pressure_addressed>
   <description><![CDATA[[3-4 sentences: who does what, when, what value they receive, how the loop closes. Be concrete and specific.]]]></description>
   <prototype_sentence><![CDATA[The user [does X], and in return receives [Y], while the producer closes the [loop name] loop by [doing Z].]]></prototype_sentence>
+  <prototype_image>
+    <loop_name>[The loop name in ALL CAPS from the sentence above — e.g. DEPOSIT-RETURN, UTILIZATION, TAKE-BACK]</loop_name>
+    <narrative_1><![CDATA[[X — the specific user action extracted verbatim from the sentence above]]]></narrative_1>
+    <narrative_2><![CDATA[[Y — what the user receives in return, extracted verbatim from the sentence above]]]></narrative_2>
+    <narrative_3><![CDATA[[who closes the loop + the loop name — e.g. "the producer closes the Deposit-return loop"]]]></narrative_3>
+    <narrative_4><![CDATA[[Z — the specific mechanism by which the loop is closed, extracted verbatim from the sentence above]]]></narrative_4>
+  </prototype_image>
   <prototype_verdict>[PASS / FAIL - Salvageable / FAIL - Discard]</prototype_verdict>
   <outcome_alignment><![CDATA[[Which success criteria from Question 5 does this concept address, and why? Be directional, not numerical. Do not invent projections or financial estimates. A prototype may be explored to find out whether the concept works, not to assert that it will.]]]></outcome_alignment>
   <assumptions>

@@ -1,40 +1,9 @@
 import base64
-import re
 
 from google import genai
 from google.genai import types
 
 import config
-
-
-def parse_prototype(sentence: str) -> dict | None:
-    """
-    Parses a prototype sentence of the form:
-      "[User action], and in return [user receives], while [actor] closes
-       the [loop name] loop by [Z]."
-    Returns a dict of image prompt variables, or None if the pattern doesn't match.
-    """
-    pattern = re.compile(
-        r'^(.+?)\s+and in return\s+(.+?),?\s+while\s+(.+?)\s+closes\s+the\s+(.+?)\s+loop\s+by\s+(.+?)\.?\s*$',
-        re.IGNORECASE | re.DOTALL,
-    )
-    m = pattern.match(sentence.strip())
-    if not m:
-        return None
-
-    user_action   = m.group(1).strip()
-    user_receives = m.group(2).strip()
-    actor         = m.group(3).strip()
-    loop_name     = m.group(4).strip()
-    z             = m.group(5).strip()
-
-    return {
-        "loop_name_caps": loop_name.upper(),
-        "narrative_1":    user_action,
-        "narrative_2":    user_receives,
-        "narrative_3":    f"{actor} closes the {loop_name} loop",
-        "narrative_4":    z,
-    }
 
 
 def call_gemini_image(prompt: str) -> bytes:
@@ -56,25 +25,24 @@ def call_gemini_image(prompt: str) -> bytes:
     raise ValueError("Gemini response contained no image part")
 
 
-def build_image_prompt(prototype: str) -> str | None:
+def build_image_prompt(image_fields: dict) -> str | None:
     """
-    Loads image_prompt.md and DESIGN.md, substitutes prototype variables,
-    and returns the final prompt string. Returns None if parsing fails.
+    Loads image_prompt.md, strips the developer-only Integration Mapping section,
+    substitutes the pre-parsed image fields, and returns the final prompt string.
+    Returns None if any required field is missing.
     """
-    fields = parse_prototype(prototype)
-    if fields is None:
+    required = ("loop_name_caps", "narrative_1", "narrative_2", "narrative_3", "narrative_4")
+    if not all(image_fields.get(k) for k in required):
         return None
 
-    template = config.load_file(config.IMAGE_PROMPT_FILE)
-    design   = config.load_file(config.DESIGN_FILE)
+    raw      = config.load_file(config.IMAGE_PROMPT_FILE)
+    template = raw.split("### Integration Mapping")[0].rstrip()
 
-    prompt = (
+    return (
         template
-        .replace("[LOOP_NAME_CAPS]",   fields["loop_name_caps"])
-        .replace("[NARRATIVE_1_TEXT]", fields["narrative_1"])
-        .replace("[NARRATIVE_2_TEXT]", fields["narrative_2"])
-        .replace("[NARRATIVE_3_TEXT]", fields["narrative_3"])
-        .replace("[NARRATIVE_4_TEXT]", fields["narrative_4"])
+        .replace("[LOOP_NAME_CAPS]",   image_fields["loop_name_caps"])
+        .replace("[NARRATIVE_1_TEXT]", image_fields["narrative_1"])
+        .replace("[NARRATIVE_2_TEXT]", image_fields["narrative_2"])
+        .replace("[NARRATIVE_3_TEXT]", image_fields["narrative_3"])
+        .replace("[NARRATIVE_4_TEXT]", image_fields["narrative_4"])
     )
-
-    return f"{prompt}\n\n---\n\n**DESIGN.md**\n\n{design}"
